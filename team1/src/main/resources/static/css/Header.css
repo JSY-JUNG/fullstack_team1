@@ -1,0 +1,50 @@
+/* Header */
+.header {
+    background-color: transparent;
+    /*position: fixed;*/
+    top: 0;
+    width: 100%;
+    height: 75px;
+    line-height: 75px;
+    padding: 0 1rem;
+    /*color: var(--color-primary);*/
+    z-index: 1;
+    transition: all 300ms ease;
+    margin-bottom: 50px;
+}
+
+.header--dark {
+    /*background-color: black;*/
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.header a,
+.header i {
+    color: black;
+    text-decoration: none;
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__menu {
+    display: flex;
+    display: none;
+}
+
+.header__menu__item a {
+    padding: 9px 20px;
+    font-size: 15px;
+}
+
+.header__bar {
+    font-size: 30px;
+}
+
+.dropdown-menu{
+    --bs-dropdown-link-active-bg:#f8f9fa;
+    --bs-dropdown-link-hover-bg:#f8f9fa;
+}

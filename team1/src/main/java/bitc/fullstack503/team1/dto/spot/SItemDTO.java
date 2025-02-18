@@ -7,6 +7,7 @@ public class SItemDTO {
     private int UC_SEQ; //순번
     private String MAIN_TITLE; // 제목 이름
     private String MAIN_IMG_THUMB; // 썸네일 이미지 사진
+    private String MAIN_IMG_NORMAL; // 노말 크기 이미지 사진
     private String USAGE_DAY_WEEK_AND_TIME; //운영날짜 및 시간
     private String HLDY_INFO; //휴무일
     private String TRFC_INFO; //약도

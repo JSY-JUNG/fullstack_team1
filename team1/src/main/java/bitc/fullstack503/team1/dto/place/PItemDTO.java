@@ -9,6 +9,7 @@ public class PItemDTO {
     private int UC_SEQ2;
     private String MAIN_TITLE;
     private String MAIN_IMG_THUMB;
+    private String MAIN_IMG_NORMAL;
     private String USAGE_DAY_WEEK_AND_TIME;
     private String GUGUN_NM;
     private String ADDR1;

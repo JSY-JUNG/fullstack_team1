@@ -146,23 +146,6 @@ a {
     /* https://www.shapedivider.app/ */
 }
 
-.category {
-    text-align: center;
-    width: 100%;
-    background: transparent;
-    border: none;
-}
-
-.category:hover {
-    filter: brightness(50%);
-}
-
-.category--selected {
-    color: blue;
-    border-bottom: 2px solid blue;
-    padding-bottom: 5px;
-}
-
 .mainBannerSearch {
     position: relative;
     display: flex;
@@ -341,17 +324,15 @@ input::placeholder {
     display: flex;
     transition: transform 0.3s ease-in-out;
     width: 80%;
-    height: 220px;
 }
 .card {
     position: relative;
     min-width: 30%;
-    height: 210px;
+    height: 350px;
     margin: 0 10px;
-    border-radius: 5px;
+    border-radius: 50px;
     overflow: hidden;
     object-fit: cover;
-    box-shadow: 4.0px 8.0px 8.0px rgba(0,0,0,0.38);
 }
 .card:hover .card__img {
     transform: scale(1.05); /* 이미지 확대 */
@@ -375,23 +356,20 @@ input::placeholder {
     z-index: 2;
 }
 
-.hotPlace__btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--coloer-point);
-    border: none;
-    background-color: transparent;
-    padding: 100px 20px;
-    z-index: 10;
-    cursor: pointer;
-    font-size: 5rem;
-}
-
-.hotPlace__btn:hover {
-    filter: brightness(50%);
-    transition: all 300ms ease;
-}
+/*.btn {*/
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    transform: translateY(-50%);*/
+/*    color: var(--coloer-point);*/
+/*    border: none;*/
+/*    padding: 20px;*/
+/*    z-index: 1;*/
+/*    cursor: pointer;*/
+/*    font-size: 2rem;*/
+/*}*/
+/*.btn:hover {*/
+/*    filter: brightness(150%);*/
+/*}*/
 .prev {
     left: 0;
 }

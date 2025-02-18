@@ -45,8 +45,8 @@ public class InitServiceImpl implements InitService {
         System.out.println("관광명소 URL : " + SpotUrl);
         System.out.println("맛집 URL : " + PlaceUrl);
 
-        getSpotList(SpotUrl);
-        getPlaceList(PlaceUrl);
+//        getSpotList(SpotUrl);
+//        getPlaceList(PlaceUrl);
     }
 
     @Autowired

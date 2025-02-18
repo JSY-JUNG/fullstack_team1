@@ -16,39 +16,21 @@
 <!-- hotPlace -->
 <section id="hotPlace" class="max-container" th:fragment="hotPlace">
     <div class="slider-container">
-        <button class="btn prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="hotPlace__btn prev" onclick="moveSlide(-1)">&#10094;</button>
         <div class="slider-wrapper">
             <div class="slider">
-                <div class="card">
+                <div class="card"  th:if="${#lists.size(placeRankList)} > 0" th:each="item : ${placeRankList}">
                     <a href="#"
-                    ><img class="card__img" src="/img/hotPlace01.png" alt="Top1" /><span
+                    ><img class="card__img" src="/img/hotPlace01.png" alt="Top1" th:src="${item.MAINIMGTHUMB}"/><span
                             class="hotPlace__rank"
-                    >Top1</span
+
+                    >Top</span
                     ></a
                     >
-                </div>
-                <div class="card">
-                    <a href="#"
-                    ><img class="card__img" src="/img/hotPlace03.png" alt="Top2" /><span
-                            class="hotPlace__rank"
-                    >Top2</span
-                    ></a
-                    >
-                </div>
-                <div class="card">
-                    <a href="#"
-                    ><img class="card__img" src="/img/hotPlace02.png" alt="Top3" />
-                        <span class="hotPlace__rank">Top3</span>
-                    </a>
-                </div>
-                <div class="card">
-                    <a href="#"
-                    ><img class="card__img" src="/img/test.png" alt="맛집사진"
-                    /></a>
                 </div>
             </div>
         </div>
-        <button class="btn next" onclick="moveSlide(1)">&#10095;</button>
+        <button class="hotPlace__btn next" onclick="moveSlide(1)">&#10095;</button>
     </div>
 
     <script>

@@ -15,23 +15,52 @@
 <!-- mainBanner -->
 <section id="mainBanner" th:fragment="mainBanner">
     <div class="mainBannerSearch max-container">
-        <form class="mainBanner__search__container">
-            <fieldset class="mainBanner__search">
-                <input
-                        class="mainBanner__search__input"
-                        type="search"
-                        placeholder="검색"
-                />
-                <button class="mainBanner__search__button" type="submit">
-                    <i class="fa fa-search mainBanner__icon"></i>
-                </button>
-            </fieldset>
-        </form>
-        <div class="mainBanner__cate">
-            <button class="mainBanner__cate__btn hotspot">명소</button>
-            <button class="mainBanner__cate__btn hotplace">맛집</button>
+        <div class="mainBanner__search p-3">
+            <ul class="row categories">
+                <li class="col-sm-2">
+                    <button class="category category--selected" data-category="all">
+                        명소
+                    </button>
+                </li>
+                <li class="col-sm-2">
+                    <button class="category" data-category="all">
+                        맛집
+                    </button>
+                </li>
+            </ul>
+            <form action="/SearchSpotList" id="frm" method="get">
+                <div class="row mt-3 ps-2">
+                    <div class="col-sm border" style="border-radius: 5px">
+                        <i class="fa fa-search mainBanner__icon"></i>
+                        <input
+
+                                class="mainBanner__search__input"
+                                type="search"
+                                placeholder="관광명소나 맛집을 검색해보세요."
+                                name="Keyword"
+                                id="keyword"
+                        />
+                    </div>
+                    <div class="col-sm-2 pe-0">
+                        <button class="btn btn-primary">검색</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
+
+    <script>
+        const categories = document.querySelector(".categories");
+        categories.addEventListener("click", (event) => {
+            const filter = event.target.dataset.category;
+            if (filter == null) {
+                return;
+            }
+            const active = document.querySelector(".category--selected");
+            active.classList.remove("category--selected");
+            event.target.classList.add("category--selected");
+        });
+    </script>
 </section>
 
 </body>

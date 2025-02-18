@@ -12,4 +12,12 @@
         SELECT * FROM SPOT
         WHERE UC_SEQ = #{UCSEQ}
     </select>
+    <select id="selectPageSearchList" parameterType="String" resultType="bitc.fullstack503.team1.dto.mysql.MySpotDTO">
+        SELECT MAIN_TITLE, MAIN_IMG_THUMB, GUGUN_NM, USAGE_AMOUNT
+        FROM SPOT
+        WHERE MAIN_TITLE LIKE CONCAT('%', #{Keyword}, '%')
+            OR ADDR1 LIKE CONCAT('%', #{Keyword}, '%')
+            OR GUGUN_NM LIKE CONCAT('%', #{Keyword}, '%')
+        ORDER BY MAIN_TITLE ASC
+    </select>
 </mapper>
