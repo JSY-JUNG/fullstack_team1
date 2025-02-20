@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface MemberMapper {
 
-    public void memberReg(RegisterDTO registerDTO) throws Exception;
+    void memberReg(RegisterDTO registerDTO) throws Exception;
 
 
     int isUserInfo(String userId, String userPw1);

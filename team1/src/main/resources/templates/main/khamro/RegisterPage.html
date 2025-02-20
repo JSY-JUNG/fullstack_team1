@@ -8,219 +8,61 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <style>
-        .full-body {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        p {
-            margin: 0;
-            font-size: medium;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        button {
-            width: 350px;
-        }
-
-        div.pass1 i {
-            position: absolute;
-            left: 90%;
-            top: 25%;
-            color: gray;
-        }
-
-        div.pass2 i {
-            position: absolute;
-            left: 90%;
-            top: 37%;
-            color: gray;
-        }
-
-
-        .h {
-            height: 60px;
-        }
-
-        .b-shadow {
-            height: 1100px;
-            width: 750px;
-        }
-
-    </style>
-
-    <script>
-        <!--        비밀번호 보기/숨기기 기능구현-->
-        $(document).ready(function () {
-            $('.pass2 i').on('click', function () {
-                $('input').toggleClass('active');
-                if ($('input').hasClass('active')) {
-                    $(this).attr('class', "fa-regular fa-eye")
-                        .prev('input').attr('type', "text");
-                } else {
-                    $(this).attr('class', "fa-regular fa-eye-slash")
-                        .prev('input').attr('type', 'password');
-                }
-            });
-
-            $('.pass1 i').on('click', function () {
-                $('input').toggleClass('active');
-                if ($('input').hasClass('active')) {
-                    $(this).attr('class', "fa-regular fa-eye")
-                        .prev('input').attr('type', "text");
-                } else {
-                    $(this).attr('class', "fa-regular fa-eye-slash")
-                        .prev('input').attr('type', 'password');
-                }
-            });
-
-            // 아이드 중복 확인
-            $("#btn-check").on("click", function () {
-                var uId = $("#user-id").val();
-                if (uId == '') {
-                    $("#check").css("color", "red").text("ID 입력해주세요...");
-                    return false;
-                }
-                //Ajax로 실제 데이터 확인
-                $.ajax({
-                    url: '/khamro/idCheck',
-                    type: "POST",
-                    data: {userId: uId},
-                    success: function (result) {
-                        if (result == true) {
-                            $("#check").css("color", "green").text("사용 가능한 ID 입니다.");
-                        } else {
-                            $("#check").css("color", "red").text("사용 불가능한 ID 입니다.");
-                        }
-                    },
-                    error: function () {
-                        alert("error");
-                    }
-                });
-            });
-            $("#btn-register").click(function (){
-                var id = $("#user-id").val();
-                var Pw1 = $("#Pw1").val();
-                var Pw2 = $("#Pw2").val();
-                var name = $("#user-name").val();
-                var birthday = $("#user-birthday").val();
-                var email = $("#user-email").val();
-                var phone = $("#user-phone").val();
-
-                if (id == ""){
-                    alert("user-id를 입력하세요")
-                    $("#user-id").focus();
-                    return false;
-                }
-                if (Pw1 == ""){
-                    alert("Pw1를 입력하세요")
-                    $("#Pw1").focus();
-                    return false;
-                }
-                if (Pw2 == ""){
-                    alert("Pw2를 입력하세요")
-                    $("#Pw2").focus();
-                    return false;
-                }
-                if (name == ""){
-                    alert("name를 입력하세요")
-                    $("#user-name").focus();
-                    return false;
-                }
-                if (birthday == ""){
-                    alert("birthday를 입력하세요")
-                    $("#user-birthday").focus();
-                    return false;
-                }
-                if (email == ""){
-                    alert("email를 입력하세요")
-                    $("#user-email").focus();
-                    return false;
-                }
-                if (phone == ""){
-                    alert("phone를 입력하세요")
-                    $("#user-phone").focus();
-                    return false;
-                }
-                ("#user-id").val(userid);
-                ("#Pw1").val(Pw1);
-                ("#Pw2").val(Pw2);
-                ("#user-name").val(name);
-                ("#user-birthday").val(birthday);
-                ("#user-phone").val(phone);
-                ("#user-email").val(email);
-            });
-        });
-    </script>
+    <script th:src="@{/js/LoginAndRegister.js}"></script>
+    <link rel="stylesheet" href="/css/khamro.css">
 </head>
 
-<body class="full-body">
-<div class=" b-shadow shadow-lg p-3 bg-white rounded position-relative">
-    <section style="width: 500px;" class="section position-absolute top-50 start-50 translate-middle">
-        <div class="row text-center">
-            <h3>회원 가입</h3>
-        </div>
-        <form action="/khamro/memberReg" method="post" onsubmit="return valid()">
-<!--            <input type="hidden" name="chk" value="0">-->
-            <div class="mt-4">
-                <p>아이디</p>
-                <div class=" row m-0 border border-2 rounded-2" style="width: 500px;">
-                    <input class="col-8 border-0 p-0 p-lg-2 h" type="text" name="userId" id="user-id" placeholder="아이디 입력">
-                    <button type="button" class="col-4 btn btn-dark p-0 btn-sm" id="btn-check">중복 확인</button>
+<body>
+<main class="full-body">
+    <div class=" r-shadow shadow-lg p-3 bg-white rounded position-relative">
+        <section style="width: 500px;" class="section position-absolute top-50 start-50 translate-middle">
+            <div class="row text-center">
+                <h3>회원 가입</h3>
+            </div>
+            <form action="/khamro/memberReg" method="post" onsubmit="return valid()">
+                <!--            <input type="hidden" name="chk" value="0">-->
+                <div class="mt-2">
+                    <p class="text">아이디</p>
+                    <div class=" row m-0 border border-2 rounded-2" style="width: 500px;">
+                        <input class="col-8 border-0 p-0 p-lg-2 h50" type="text" name="userId" id="user-id" placeholder="아이디 입력">
+                        <button type="button" class="col-4 btn btn-dark p-0 m-0 btn-sm" id="btn-check">중복 확인</button>
+                    </div>
+                    <label id="check"></label>
                 </div>
-                <label id="check"></label>
-            </div>
-            <div class="mt-4 pass1">
-                <p>비밀번호</p>
-                <input type="password" id="Pw1" name="userPw1" placeholder="비밀번호 입력" class="form-control h">
-                <i class="fa-regular fa-eye-slash"></i>
-            </div>
-            <div class="mt-4 pass2">
-                <p>비밀번호확인</p>
-                <input type="password" id="Pw2" name="userPw2" placeholder="비밀번호 재입력" class="form-control h" onfocusout="pwCheck()">
-                <i class="fa-regular fa-eye-slash"></i>
-                <span id="chechingPw"></span>
-            </div>
-            <div class="mt-4 ">
-                <p>이름</p>
-                <input type="text" placeholder="이름 입력" id="user-name" name="userName" class="form-control h">
-            </div>
-            <div class="mt-4 ">
-                <p>생년월일</p>
-                <input type="text" placeholder="생년월일" id="user-birthday" name="userData" class="form-control h">
-            </div>
-            <div class="mt-4 ">
-                <p>이메일</p>
-                <input type="text" placeholder="이메일 입력" id="user-email" name="userEmail" class="form-control h">
-            </div>
-            <div class="mt-4 ">
-                <p>연락처</p>
-                <input type="text" placeholder="핸드폰번호 입력" id="user-number" name="userPhone" class="form-control h">
-            </div>
-            <div class="mt-5">
-                <button type="submit" class="btn btn-outline-dark h" style="width: 500px;" id="btn-register">회원 가입 완료하기</button>
-            </div>
-        </form>
-    </section>
-</div>
-
-<script>
-    function pwCheck() {
-        var password1 = $("#Pw1").val();
-        var password2 = $("#Pw2").val();
-        if (password1 == password2) {
-            $('#chechingPw').text('일치하다').css('color', 'green')
-        } else {
-            $('#chechingPw').text('일치하지 않다').css('color', 'red')
-        }
-    }
-
-</script>
+                <div class="mt-2 pw1">
+                    <p class="text">비밀번호</p>
+                    <input type="password" id="Pw1" name="userPw1" placeholder="비밀번호 입력" class="form-control h50">
+<!--                    <i class="fa-regular fa-eye-slash"></i>-->
+                </div>
+                <div class="mt-2 pw2">
+                    <p class="text">비밀번호 확인</p>
+                    <input type="password" id="Pw2" name="userPw2" placeholder="비밀번호 재입력" class="form-control h50" onfocusout="pwCheck()">
+<!--                    <i class="fa-regular fa-eye-slash"></i>-->
+                    <span id="chechingPw"></span>
+                </div>
+                <div class="mt-2 ">
+                    <p class="text">이름</p>
+                    <input type="text" placeholder="이름 입력" id="user-name" name="userName" class="form-control h50">
+                </div>
+                <div class="mt-2 ">
+                    <p class="text">생년월일</p>
+                    <input type="text" placeholder="생년월일" id="user-birthday" name="userData" class="form-control h50">
+                </div>
+                <div class="mt-2 ">
+                    <p class="text">이메일</p>
+                    <input type="text" placeholder="이메일 입력" id="user-email" name="userEmail" class="form-control h50">
+                </div>
+                <div class="mt-2 ">
+                    <p class="text">연락처</p>
+                    <input type="text" placeholder="핸드폰번호 입력" id="user-number" name="userPhone" class="form-control h50">
+                </div>
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-outline-dark h" style="width: 500px;" id="btn-register">회원 가입 완료하기</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</main>
 
 </body>
 </html>

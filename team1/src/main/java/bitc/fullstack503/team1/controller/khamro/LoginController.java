@@ -2,7 +2,9 @@ package bitc.fullstack503.team1.controller.khamro;
 
 import bitc.fullstack503.team1.dto.member.RegisterDTO;
 import bitc.fullstack503.team1.service.member.RegisterService;
+import bitc.fullstack503.team1.util.ScriptUtil;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,20 +17,16 @@ public class LoginController {
     private RegisterService registerService;
 
 //    회원 가입 페이지 출력 요청
-    @RequestMapping("/khamro/register")
+    @GetMapping("/khamro/register")
     public String register() {
         return "main/khamro/RegisterPage";
     }
 
 //    회원 가입 페이지에서 작성한 내용을 받아준 메소드
     @PostMapping("/khamro/memberReg")
-    public String MemberRegister(@ModelAttribute RegisterDTO registerDTO) throws Exception {
+    public void MemberRegister(RegisterDTO registerDTO, HttpServletResponse res) throws Exception {
         registerService.memberReg(registerDTO);
-
-//        DTO 파일과 연결 확인
-        System.out.println("LoginController.MemberRegister");
-        System.out.println("registerDTO" + registerDTO);
-        return "main/kms/mainPage";
+        ScriptUtil.alertAndPage(res, "회원가입 성공", "/");
     }
 
 //        id 중복 확인 (ajax)
@@ -38,13 +36,6 @@ public class LoginController {
         return registerService.checkId(userId);
     }
 
-
-
-
-
-
-
-
     //  로그인 페이지
     @GetMapping("/khamro")
     public String login() {
@@ -53,37 +44,36 @@ public class LoginController {
 
 //    로그인 process 페이지
     @RequestMapping("/khamro/loginProcess")
-    public String loginProcess(@RequestParam ("userId") String userId, @RequestParam("userPw1") String userPw1, HttpServletRequest request) throws Exception {
+    public void loginProcess(@RequestParam ("userId") String userId, @RequestParam("userPw1") String userPw1, HttpServletRequest req, HttpServletResponse res) throws Exception {
 
         boolean result = registerService.isUserInfo(userId, userPw1);
 
 //        입력한 아이디와 비밀번호가 데이터베이스에 있으면 getUserInfo() 메소드를 이요하여 가져옴
         if(result == true) {
             RegisterDTO login = registerService.getUserInfo(userId);
-            HttpSession session = request.getSession();
-            session.setAttribute("userId", login.getUserId() );
-            session.setAttribute("userPw1", login.getUserPw1());
+            HttpSession session = req.getSession();
+            session.setAttribute("userId", login.getUserId());
+            session.setAttribute("userName", login.getUserName());
+//            session.setAttribute("userPw1", login.getUserPw1());
             session.setMaxInactiveInterval(60);
-            return "main/kms/mainPage";
+            ScriptUtil.alertAndPage(res,"로그인 성공","/");
         }
 //        입력한 아이디와 비밀번호가 데이터베이스에 없으면
         else {
-            System.out.println();
-            return "main/khamro/LoginPage";
-
+            ScriptUtil.alertAndPage(res,"ID/PW 정보가 다릅니다.","/khamro");
         }
     }
 
-//    로그아웃 처리
-//    @RequestMapping("/khamro/logout")
-//    public String logout(HttpServletRequest request) throws Exception {
-//        HttpSession session = request.getSession();
-//        session.removeAttribute("userId");
-//        session.removeAttribute("userPw1");
-//
-//        session.invalidate();
-//        return "main/kms/mainPage";
-//    }
+    // 로그아웃 처리
+    @RequestMapping("/khamro/logout")
+    public void logout(HttpServletRequest req, HttpServletResponse res) throws Exception {
+        HttpSession session = req.getSession();
+        session.removeAttribute("userId");
+        session.removeAttribute("userName");
+
+        session.invalidate();
+        ScriptUtil.alertAndPage(res,"로그아웃 되었습니다.","/");
+    }
 
 //    ID/PW 찾기 페이지
     @RequestMapping("/khamro/logPw")

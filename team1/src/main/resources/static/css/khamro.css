@@ -42,3 +42,34 @@ div.pass i {
     width: 650px;
     height: 750px;
 }
+
+
+.text {
+    margin: 0;
+    font-size: medium;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+div.pass1 i {
+    position: absolute;
+    left: 90%;
+    top: 25%;
+    color: gray;
+}
+
+div.pass2 i {
+    position: absolute;
+    left: 90%;
+    top: 37%;
+    color: gray;
+}
+
+.h50 {
+    height: 50px;
+}
+
+.r-shadow {
+    height: 900px;
+    width: 650px;
+}

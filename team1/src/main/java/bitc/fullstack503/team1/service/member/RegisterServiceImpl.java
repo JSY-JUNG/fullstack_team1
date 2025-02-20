@@ -14,7 +14,6 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Override
     public void memberReg(RegisterDTO registerDTO) throws Exception {
-
         memberMapper.memberReg(registerDTO);
     }
 

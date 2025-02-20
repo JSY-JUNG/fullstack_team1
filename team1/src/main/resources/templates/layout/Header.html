@@ -32,18 +32,25 @@
                 <li class="header__menu__item"><a href="#">지원</a></li>
             </ul>
         </nav>
+
         <div class="header__bar">
-            <li class="nav-item dropdown" style="list-style: none">
-                <a class="nav-link" href="#" id="navbarDropdownMenuLink"  data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-bars"></i>
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" href="#" th:href="@{/kms}"><span>김민서</span></a></li>
-                    <li><a class="dropdown-item" href="#" th:href="@{/knh}"><span>김나현</span></a></li>
-                    <li><a class="dropdown-item" href="#" th:href="@{/khamro}"><span>하므로</span></a></li>
-                    <li><a class="dropdown-item" href="#" th:href="@{/njg}"><span>노종근</span></a></li>
-                </ul>
-            </li>
+            <div class="header__left me-2">
+                <a href="#" th:href="@{/khamro}" class="align-items-center" th:if="${session.userId == null}"><span style="font-size: 18px;">LOGIN</span></a>
+                <a href="#" th:href="@{/khamro/logout}" class="align-items-center" th:unless="${session.userId == null}"><span style="font-size: 18px;">LOGOUT</span></a>
+            </div>
+            <div class="header__right">
+                <li class="nav-item dropdown" style="list-style: none">
+                    <a class="nav-link" href="#" id="navbarDropdownMenuLink"  data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-bars"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="#" th:href="@{/kms}"><span>김민서</span></a></li>
+                        <li><a class="dropdown-item" href="#" th:href="@{/knh}"><span>김나현</span></a></li>
+                        <li><a class="dropdown-item" href="#" th:href="@{/khamro}"><span>하므로</span></a></li>
+                        <li><a class="dropdown-item" href="#" th:href="@{/njg}"><span>노종근</span></a></li>
+                    </ul>
+                </li>
+            </div>
         </div>
     </div>
 </header>

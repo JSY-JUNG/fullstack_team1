@@ -23,22 +23,6 @@ public class MainController {
     @Autowired
     private ReviewService reviewService;
 
-    @GetMapping("/test")
-    public ModelAndView test() throws Exception {
-        ModelAndView mv = new ModelAndView("page/spot");
-
-        List<MySpotDTO> MySpotList = searchListService.SelectMySpotList();
-        mv.addObject("MySpotList", MySpotList);
-        return mv;
-    }
-
-    @GetMapping("/test/{UCSEQ}")
-    public ModelAndView test(@PathVariable("UCSEQ") int UCSEQ) throws Exception {
-        ModelAndView mv = new ModelAndView("main/jsy/P1");
-        MySpotDTO spotDetail = searchListService.selectDetail(UCSEQ);
-        mv.addObject("spotDetail", spotDetail);
-        return mv;
-    }
 
     @GetMapping("/SearchList")
     public ModelAndView SearchList(@RequestParam("category") String category, @RequestParam("Keyword") String Keyword, @RequestParam(required = false, defaultValue = "1", value = "pageNum") int pageNum) throws Exception {

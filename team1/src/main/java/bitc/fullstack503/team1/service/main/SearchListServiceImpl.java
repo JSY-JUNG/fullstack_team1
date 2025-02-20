@@ -16,20 +16,12 @@ public class SearchListServiceImpl implements SearchListService {
     @Autowired
     private ListMapper listMapper;
 
-    @Override
-    public List<MySpotDTO> SelectMySpotList() throws Exception {
-        return listMapper.SelectMySpotList();
-    }
 
     @Override
     public MySpotDTO selectDetail(int ucseq) throws Exception {
         return listMapper.selectDetail(ucseq);
     }
 
-    @Override
-    public List<MySpotDTO> SelectSearchList(String keyword, int pageNum) throws Exception {
-        return listMapper.SelectSearchList(keyword);
-    }
 
     @Override
     public Page<MySpotDTO> SelectPageSearchListA(String keyword, int pageNum) throws Exception {

@@ -39,19 +39,6 @@
             </form>
         </div>
     </div>
-
-    <script>
-        const categories = document.querySelector(".categories");
-        categories.addEventListener("click", (event) => {
-            const filter = event.target.dataset.category;
-            if (filter == null) {
-                return;
-            }
-            const active = document.querySelector(".category--selected");
-            active.classList.remove("category--selected");
-            event.target.classList.add("category--selected");
-        });
-    </script>
 </section>
 
 </body>
