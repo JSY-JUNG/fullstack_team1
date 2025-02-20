@@ -18,4 +18,6 @@ public class SItemDTO {
     private String HOMEPAGE_URL; // 홈페이지 주소
     private String ITEMCNTNTS; // 상세내용
     private String GUGUN_NM; // 구군
+    private String LAT; //위도
+    private String LNG; //경도
 }

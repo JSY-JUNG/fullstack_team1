@@ -18,23 +18,20 @@
     <div class="section-inner">
         <div class="spot-info">
             <dl>
-                <dd><span>전화번호</span>02-3700-3900</dd>
+                <dd><span class="me-3 spot-span">전화번호</span><span style="color: rgb(130, 130, 130)" th:text="${spotDetail.CNTCTTEL}">전화번호텍스트</span></dd>
             </dl>
             <dl>
-                <dd><span>이용시간</span>09:00~17:00(입장마감 16:00)</dd>
+                <dd><span class="me-3 spot-span">이용시간 및 운영일</span><span style="color: rgb(130, 130, 130)" th:text="${#strings.isEmpty(spotDetail.USAGEDAYWEEKANDTIME) ? '제한없음' : spotDetail.USAGEDAYWEEKANDTIME}">이용시간텍스트</span></dd>
             </dl>
             <dl>
-                <dd><span>휴무일</span>화요일</dd>
+                <dd><span class="me-3 spot-span">휴무일</span><span style="color: rgb(130, 130, 130)" th:text="${#strings.isEmpty(spotDetail.HLDYINFO) ? '연중무휴' : spotDetail.HLDYINFO}">휴무일텍스트</span></dd>
             </dl>
             <dl>
-                <dd><span>운영요일</span>월,수~일</dd>
-            </dl>
-            <dl>
-                <dd><span>주소</span>03045서울 종로구 사직로 161 (세종로, 경복궁)</dd>
+                <dd><span class="me-3 spot-span">주소</span><span style="color: rgb(130, 130, 130)" th:text="${spotDetail.ADDR1}">주소텍스트</span></dd>
             </dl>
             <dl>
                 <dt></dt>
-                <dd><span>교통정보</span>5호선 광화문역 2번 출구에서 약 471m (도보 9분)</dd>
+                <dd><span class="me-3 spot-span">교통정보</span><span style="color: rgb(130, 130, 130)" th:text="${spotDetail.TRFCINFO}">교통정보텍스트</span></dd>
             </dl>
 
         </div>

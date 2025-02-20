@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>관광명소</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="/css/Header.css">
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+            integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    />
+    <style>
+        /* 기본 흰색 버튼 */
+        .circle-button {
+            display: flex;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: white;
+            color: #007AFF;
+            margin-right: 5px;
+            border: 2px solid #000000;
+            position: relative;
+        }
+
+        /* 클릭한 버튼만 파란색 */
+        .circle-button.active {
+            background: linear-gradient(135deg, #1D8BFF, #007AFF);
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div th:replace="~{/layout/Header :: header}"></div>
+    <main class="container">
+        <div class="d-flex gap-4">
+            <aside>
+                <div class="pb-3 pt-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h2 class="m-0" style="font-size: 1.125rem; font-weight: 700">필터</h2>
+                        <a href="#" class="text-decoration-none d-flex" style="color: rgb(214, 214, 214)">
+                            <span class="me-1">
+                                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="vertical-align: 0; fill: rgb(214, 214, 214)">
+                                    <path d="M142.9 142.9c-17.5 17.5-30.1 38-37.8 59.8c-5.9 16.7-24.2 25.4-40.8 19.5s-25.4-24.2-19.5-40.8C55.6 150.7 73.2 122 97.6 97.6c87.2-87.2 228.3-87.5 315.8-1L455 55c6.9-6.9 17.2-8.9 26.2-5.2s14.8 12.5 14.8 22.2l0 128c0 13.3-10.7 24-24 24l-8.4 0c0 0 0 0 0 0L344 224c-9.7 0-18.5-5.8-22.2-14.8s-1.7-19.3 5.2-26.2l41.1-41.1c-62.6-61.5-163.1-61.2-225.3 1zM16 312c0-13.3 10.7-24 24-24l7.6 0 .7 0L168 288c9.7 0 18.5 5.8 22.2 14.8s1.7 19.3-5.2 26.2l-41.1 41.1c62.6 61.5 163.1 61.2 225.3-1c17.5-17.5 30.1-38 37.8-59.8c5.9-16.7 24.2-25.4 40.8-19.5s25.4 24.2 19.5 40.8c-10.8 30.6-28.4 59.3-52.9 83.8c-87.2 87.2-228.3 87.5-315.8 1L57 457c-6.9 6.9-17.2 8.9-26.2 5.2S16 449.7 16 440l0-119.6 0-.7 0-7.6z"/>
+                                </svg>
+                            </span>
+                            <span style="font-size: 0.875rem">초기화</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column align-items-start">
+                    <div class="d-inline-flex align-items-center pb-3 pt-3">
+                        <a href="#" aria-label="체크박스" class="text-decoration-none d-flex align-items-center" style="color: rgb(51 51 51)">
+                                <svg class="me-1" style="vertical-align: 0;" width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M384 80c8.8 0 16 7.2 16 16l0 320c0 8.8-7.2 16-16 16L64 432c-8.8 0-16-7.2-16-16L48 96c0-8.8 7.2-16 16-16l320 0zM64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32z"/></svg>
+                                <span>관광명소만 보기</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column align-items-start border-top">
+                    <div class="pb-2 pt-2 w-100">
+                        <div class="pb-3 pt-3 mb-1">
+                            <h3 style="font-size: 1rem; font-weight: 700" class="align-items-center d-flex">위치</h3>
+                        </div>
+
+                        <div class="d-flex flex-column pb-3">
+                            <div class="d-inline-flex align-items-center pb-3 pt-3">
+                                <button id="all-lists-btn" class="circle-button"></button>
+                                <span>전체</span>
+                            </div>
+
+                            <div th:each="gugun : ${gugunList}" class="d-inline-flex align-items-center pb-3 pt-3">
+                                <button class="circle-button gugun-filter" th:data-gugun="${gugun.GUGUNNM}"></button>
+                                <span th:text="${gugun.GUGUNNM}">구군</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="d-flex flex-column align-items-start border-top border-bottom">
+                    <div class="pb-2 pt-2 w-100">
+                        <div class="pb-3 pt-3 mb-1">
+                            <h3 style="font-size: 1rem; font-weight: 700" class="align-items-center d-flex">별점</h3>
+                        </div>
+                        <div class="d-flex flex-column pb-3">
+                            <div class="d-inline-flex align-items-center pb-3 pt-3">
+                                <a href="#" class="text-decoration-none d-flex align-items-center" style="color: rgb(51 51 51)">
+                                    <!--                                    <svg class="me-1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg>-->
+                                    <svg class="me-1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="vertical-align: 0;"><path style="fill: #0a53be" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>
+                                    <span>★ ★ ★ ★ ★</span>
+                                </a>
+                            </div>
+                            <div class="d-inline-flex align-items-center pb-3 pt-3">
+                                <a href="#" class="text-decoration-none d-flex align-items-center" style="color: rgb(51 51 51)">
+                                    <svg class="me-1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg>
+                                    <!--                                    <svg class="me-1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="vertical-align: 0;"><path style="fill: #0a53be" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>-->
+                                    <span>★ ★ ★ ★</span>
+                                </a>
+                            </div>
+                            <div class="d-inline-flex align-items-center pb-3 pt-3">
+                                <a href="#" class="text-decoration-none d-flex align-items-center" style="color: rgb(51 51 51)">
+                                    <svg class="me-1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg>
+                                    <!--                                    <svg class="me-1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="vertical-align: 0;"><path style="fill: #0a53be" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>-->
+                                    <span>★ ★ ★</span>
+                                </a>
+                            </div>
+                            <div class="d-inline-flex align-items-center pb-3 pt-3">
+                                <a href="#" class="text-decoration-none d-flex align-items-center" style="color: rgb(51 51 51)">
+                                    <svg class="me-1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg>
+                                    <!--                                    <svg class="me-1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="vertical-align: 0;"><path style="fill: #0a53be" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>-->
+                                    <span>★ ★</span>
+                                </a>
+                            </div>
+                            <div class="d-inline-flex align-items-center pb-3 pt-3">
+                                <a href="#" class="text-decoration-none d-flex align-items-center" style="color: rgb(51 51 51)">
+                                    <svg class="me-1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg>
+                                    <!--                                    <svg class="me-1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="vertical-align: 0;"><path style="fill: #0a53be" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>-->
+                                    <span>★</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+            <section class="flex-grow-1">
+                <!-- 상품 목록 -->
+             <div class="row pb-3 border-bottom pt-3" th:if="${#lists.size(SearchList.getList())} > 0 " th:each="item : ${SearchList.getList()}">
+                 <div class="col-sm-6" style="border-color: rgb(235,235,235); background-color: rgb(255,255,255)">
+                     <div class="position-relative" style="height: 240px; width: 100%;">
+                         <div class="overflow-hidden h-100">
+                             <a href="#" th:href="@{|/knh/${item.UCSEQ}|}"><img sizes="100vw" src="#" class="position-absolute h-100 w-100" style="inset: 0px; color: transparent; object-fit: cover; max-height: 240px; border-radius: 12px;" alt="#" th:src="@{|${item.MAINIMGTHUMB}|}"></a>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-sm">
+                     <p class="mb-0" style="color: rgb(112 112 112)" th:text="${item.GUGUNNM}">구군</p>
+                     <h2 class="mt-1" style="font-size: 1.1em; font-weight: 700" th:text="${item.MAINTITLE}">명소이름</h2>
+                     <br>
+                     <p th:text="${#strings.isEmpty(item.USAGEAMOUNT) ? '' : item.USAGEAMOUNT}">요금</p>
+                 </div>
+             </div>
+             <div class="row pb-3 border-bottom pt-3" th:unless="${#lists.size(SearchList.getList())} > 0">
+                 <div class="text-center">
+                     <p>조회된 데이터가 없습니다.</p>
+                 </div>
+             </div>
+            <div class="mt-3">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:classappend="${SearchList.getPrePage() == 0} ? 'disabled' ">
+                        <a href="#" class="page-link" th:href="@{|/SearchList?Keyword=${Keyword}&pageNum=${SearchList.getPrePage()}|}">&laquo;</a>
+                    </li>
+                    <li class="page-item" th:each="page : ${#numbers.sequence(SearchList.getNavigateFirstPage(), SearchList.getNavigateLastPage())}"
+                        th:classappend="${page == SearchList.getPageNum()} ? 'active' ">
+                        <a href="#" class="page-link" th:href="@{|/SearchList?Keyword=${Keyword}&pageNum=${page}|}" th:text="${page}">1</a>
+                    </li>
+                    <li class="page-item" th:classappend="${SearchList.getNextPage() == 0} ? 'disabled' ">
+                        <a href="#" class="page-link" th:href="@{|/SearchList?Keyword=${Keyword}&pageNum=${SearchList.getNextPage()}|}">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+            </section>
+        </div>
+        <script>
+            $(document).ready(function () {
+                // 카테고리 들고오기
+                var category = $("#category-data").data("category");
+
+               // 버튼 클릭 시 ACTIVE 이동
+               $('.circle-button').on('click', function () {
+                  $('.circle-button').removeClass('active');
+                  $(this).addClass('active');
+               });
+
+               // 전체 버튼 클릭 시 목록 불러오기
+                $("#all-lists-btn").on("click", function () {
+                   $.ajax({
+                       url: `/SearchList?category=`+category + `&Keyword=`,
+                       method: 'GET',
+                       success: function (data) {
+                           window.location.href= `/SearchList?category=`+category + `&Keyword=`;
+                       },
+                       error: function () {
+                           alert("전체 목록을 가져오는 중 오류 발생");
+                       }
+                   })
+                });
+
+                // 구군 버튼 클릭 시 해당 지역 목록 불러오기
+                $(".gugun-filter").on("click", function () {
+                    var gugun = $(this).data('gugun').trim();
+                    $.ajax({
+                        url: `/SearchList?category=`+category + `&Keyword=` + gugun,
+                        method: 'GET',
+                        success: function (data) {
+                            window.location.href= `/SearchList?category=`+category + `&Keyword=` + gugun;
+                        },
+                        error: function () {
+                            alert("목록을 가져오는 중 오류 발생");
+                        }
+                    })
+                });
+
+            });
+        </script>
+        <div id="category-data" th:data-category="${category}"></div>
+    </main>
+    <div th:replace="~{/layout/Footer :: footer}"></div>
+</body>
+</html>

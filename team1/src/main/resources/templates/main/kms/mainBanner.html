@@ -16,24 +16,15 @@
 <section id="mainBanner" th:fragment="mainBanner">
     <div class="mainBannerSearch max-container">
         <div class="mainBanner__search p-3">
-            <ul class="row categories">
-                <li class="col-sm-2">
-                    <button class="category category--selected" data-category="all">
-                        명소
-                    </button>
-                </li>
-                <li class="col-sm-2">
-                    <button class="category" data-category="all">
-                        맛집
-                    </button>
-                </li>
-            </ul>
-            <form action="/SearchSpotList" id="frm" method="get">
+            <form action="/SearchList" id="frm" method="get">
+                <div class="select">
+                    <input type="radio" id="select" name="category" value="A" checked><label class="select__label" for="select">명소</label>
+                    <input type="radio" id="select2" name="category" value="B"><label for="select2">맛집</label>
+                </div>
                 <div class="row mt-3 ps-2">
                     <div class="col-sm border" style="border-radius: 5px">
                         <i class="fa fa-search mainBanner__icon"></i>
                         <input
-
                                 class="mainBanner__search__input"
                                 type="search"
                                 placeholder="관광명소나 맛집을 검색해보세요."
@@ -42,7 +33,7 @@
                         />
                     </div>
                     <div class="col-sm-2 pe-0">
-                        <button class="btn btn-primary">검색</button>
+                        <button type="submit" class="btn btn-primary">검색</button>
                     </div>
                 </div>
             </form>

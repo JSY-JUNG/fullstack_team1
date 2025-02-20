@@ -18,4 +18,7 @@ public class MySpotDTO {
     private String HOMEPAGEURL; // 홈페이지 주소
     private String ITEMCNTNTS; // 상세내용
     private String GUGUNNM; // 구군
+    private String SCOPEAVG; // 평균 별점
+    private String LAT; //위도
+    private String LNG; //경도
 }

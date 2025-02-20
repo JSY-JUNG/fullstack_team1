@@ -16,49 +16,45 @@
 <section th:fragment="section4" class="section4">
     <div class="section-inner">
         <h2>부산왔나 Review</h2>
-        <div class="review-drop">
-            <select name="review-drop" class="review-drop-custom" style="width: 80px;">
-                <option value="">별점순</option>
-                <option value="">최신순</option>
-                <option value="">오래된순</option>
-            </select>
-        </div>
+<!--        <div class="review-drop">-->
+<!--            <select name="review-drop" class="review-drop-custom" style="width: 80px;">-->
+<!--                <option value="">별점순</option>-->
+<!--                <option value="">최신순</option>-->
+<!--                <option value="">오래된순</option>-->
+<!--            </select>-->
+<!--        </div>-->
         <div>
             <div class=" d-flex justify-content-start gap-3 flex-wrap">
-                <div class="item">
+
+                <div class="item" th:if="${#lists.size(reviewBoard)} > 0" th:each="reviewBoard : ${reviewBoard}">
                     <ul class="reveiw-count-main p-3">
 <!--                        예시이미지-->
-                        <li class="float-start" style="width: 150px; height: 150px; background-color: #bbbbbb"></li>
-                        <li class="float-end">리뷰내용 입니다. 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 </li>
-                        <li>
-                            <div class="btn-set p-3">
-                                <button>수정</button>
-                                <button>삭제</button>
-                            </div>
+                        <li class="float-start p-0">
+                            <img src="#" th:src="@{'/images/' + ${reviewBoard.imageUrl}}" th:style="${#strings.isEmpty(reviewBoard.imageUrl) ? 'width: 150px; height: 150px; background-color: #bbbbbb;' : 'width: 150px; height: 150px;'}">
                         </li>
+<!--                        <li class="float-start" style="width: 150px; height: 150px; background-color: #bbbbbb"></li>-->
+                        <li class="float-end" th:text="${reviewBoard.contents}">리뷰내용 입니다. 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 </li>
                     </ul>
                     <div class="reveiw-count-sub d-flex justify-content-between p-3">
                         <div>
-                            별점 아이콘
+                            <span th:each="i : ${#numbers.sequence(1, 5)}">
+                                <span th:class="${i <= reviewBoard.scope ? 'filled-star' : 'empty-star'}">
+                                    ★
+                                </span>
+                            </span>
                         </div>
                         <div>
-                            <span>아이디</span>
+                            <span th:text="${reviewBoard.userId}">아이디</span>
                             <span>|</span>
-                            <span>2025-02-12</span>
+                            <span th:text="${reviewBoard.createDate}">2025-02-12</span>
                         </div>
                     </div>
                 </div>
-                <div class="item">
+                <div class="item" th:unless="${#lists.size(reviewBoard)} > 0">
                     <ul class="reveiw-count-main p-3">
                         <!--                        예시이미지-->
                         <li class="float-start" style="width: 150px; height: 150px; background-color: #bbbbbb"></li>
                         <li class="float-end">리뷰내용 입니다. 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 </li>
-                        <li>
-                            <div class="btn-set p-3">
-                                <button>수정</button>
-                                <button>삭제</button>
-                            </div>
-                        </li>
                     </ul>
                     <div class="reveiw-count-sub d-flex justify-content-between p-3">
                         <div>
@@ -71,32 +67,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="item">
-                    <ul class="reveiw-count-main p-3">
-                        <!--                        예시이미지-->
-                        <li class="float-start" style="width: 150px; height: 150px; background-color: #bbbbbb"></li>
-                        <li class="float-end">리뷰내용 입니다. 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 </li>
-                        <li>
-                            <div class="btn-set p-3">
-                                <button>수정</button>
-                                <button>삭제</button>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="reveiw-count-sub d-flex justify-content-between p-3">
-                        <div>
-                            별점 아이콘
-                        </div>
-                        <div>
-                            <span>아이디</span>
-                            <span>|</span>
-                            <span>2025-02-12</span>
-                        </div>
-                    </div>
-                </div>
-
-
-
             </div>
         </div>
     </div>

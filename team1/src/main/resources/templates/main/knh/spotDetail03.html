@@ -14,38 +14,32 @@
             crossorigin="anonymous"></script>
 
 
-
 </head>
 <body>
 <section class="section3" th:fragment="section3">
-    <div id="map" style="width:1140px;height:450px; margin: 0 auto"></div>
+    <input type="hidden" th:value="${spotDetail.LAT}" id="LAT">
+    <input type="hidden" th:value="${spotDetail.LNG}" id="LNG">
+    <div id="map" class="kakaoMap"></div>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c96171f0cd887ff2dbed9c19ae2198e8&libraries=services"></script>
     <script>
-        var addr1 = $("#addr1").val();
+        var LAT = $("#LAT").val();
+        var LNG = $("#LNG").val();
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div
             mapOption = {
-                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                center: new kakao.maps.LatLng(LAT, LNG), // 지도의 중심좌표
                 level: 4 // 지도의 확대 레벨
             };
 
         // 지도를 생성합니다
         var map = new kakao.maps.Map(mapContainer, mapOption);
 
-        // 주소-좌표 변환 객체를 생성합니다
-        var geocoder = new kakao.maps.services.Geocoder();
+        var markerPosition  = new kakao.maps.LatLng(LAT, LNG);
 
-        // 주소로 좌표를 검색합니다 (바꿔야함)
-        geocoder.addressSearch('부산광역시', function(result, status) {
-            if (status === kakao.maps.services.Status.OK) {
-                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-                var marker = new kakao.maps.Marker({
-                    map: map,
-                    position: coords
-                });
-                map.setCenter(coords);
-                map.setDraggable(false);
-            }
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            position: markerPosition
         });
+        marker.setMap(map);
     </script>
 </section>
 

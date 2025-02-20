@@ -16,4 +16,6 @@ public class PItemDTO {
     private String ITEMCNTNTS;
     private String RPRSNTV_MENU;
     private String CNTCT_TEL;
+    private String LAT; //위도
+    private String LNG; //경도
 }

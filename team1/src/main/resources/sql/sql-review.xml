@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitc.fullstack503.team1.mapper.main.ReviewMapper">
+    <select id="selectDetailReviewCardList" resultType="bitc.fullstack503.team1.dto.mysql.MyReviewBoardDTO">
+        SELECT
+            a.review_idx, a.user_id, a.UC_SEQ, a.UC_SEQ2, a.contents, a.scope,
+            DATE_FORMAT(a.create_date, '%Y-%m-%d') as create_date, substring(b.image_url,24,30) as image_url
+        FROM
+            review_board a
+        LEFT JOIN
+            review_image b
+        ON
+            a.review_idx = b.review_idx
+        where
+            UC_SEQ = #{UCSEQ}
+        ORDER BY
+            create_date ASC
+        LIMIT
+            1, 4
+    </select>
+</mapper>
