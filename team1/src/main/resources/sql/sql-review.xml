@@ -20,4 +20,18 @@
         LIMIT
             1, 4
     </select>
+
+    <insert id="insertBoard" parameterType="bitc.fullstack503.team1.dto.mysql.MyReviewBoardDTO">
+        INSERT INTO review_board (contents, user_id, create_date, update_date, scope)
+        VALUES (#{contents}, 'test1', NOW(), NOW(), #{scope});
+    </insert>
+
+    <insert id="insertBoardFileList" parameterType="bitc.fullstack503.team1.dto.mysql.MyReviewBoardDTO">
+        INSERT INTO review_image
+        (review_idx, original_file_name, stored_file_name, file_size, user_id)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.reviewIdx}, #{item.originalFileName}, #{item.storedFileName}, #{item.fileSize}, #{item.userId})
+        </foreach>
+    </insert>
 </mapper>

@@ -138,60 +138,66 @@
             </aside>
             <section class="flex-grow-1">
                 <!-- 상품 목록 -->
-             <div class="row pb-3 border-bottom pt-3" th:if="${#lists.size(SearchList.getList())} > 0 " th:each="item : ${SearchList.getList()}">
-                 <div class="col-sm-6" style="border-color: rgb(235,235,235); background-color: rgb(255,255,255)">
-                     <div class="position-relative" style="height: 240px; width: 100%;">
-                         <div class="overflow-hidden h-100">
-                             <a href="#" th:href="@{|/knh/${item.UCSEQ}|}"><img sizes="100vw" src="#" class="position-absolute h-100 w-100" style="inset: 0px; color: transparent; object-fit: cover; max-height: 240px; border-radius: 12px;" alt="#" th:src="@{|${item.MAINIMGTHUMB}|}"></a>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-sm">
-                     <p class="mb-0" style="color: rgb(112 112 112)" th:text="${item.GUGUNNM}">구군</p>
-                     <h2 class="mt-1" style="font-size: 1.1em; font-weight: 700" th:text="${item.MAINTITLE}">명소이름</h2>
-                     <br>
-                     <p th:text="${#strings.isEmpty(item.USAGEAMOUNT) ? '' : item.USAGEAMOUNT}">요금</p>
-                 </div>
-             </div>
-             <div class="row pb-3 border-bottom pt-3" th:unless="${#lists.size(SearchList.getList())} > 0">
-                 <div class="text-center">
-                     <p>조회된 데이터가 없습니다.</p>
-                 </div>
-             </div>
-            <div class="mt-3">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item" th:classappend="${SearchList.getPrePage() == 0} ? 'disabled' ">
-                        <a href="#" class="page-link" th:href="@{|/SearchList?Keyword=${Keyword}&pageNum=${SearchList.getPrePage()}|}">&laquo;</a>
-                    </li>
-                    <li class="page-item" th:each="page : ${#numbers.sequence(SearchList.getNavigateFirstPage(), SearchList.getNavigateLastPage())}"
-                        th:classappend="${page == SearchList.getPageNum()} ? 'active' ">
-                        <a href="#" class="page-link" th:href="@{|/SearchList?Keyword=${Keyword}&pageNum=${page}|}" th:text="${page}">1</a>
-                    </li>
-                    <li class="page-item" th:classappend="${SearchList.getNextPage() == 0} ? 'disabled' ">
-                        <a href="#" class="page-link" th:href="@{|/SearchList?Keyword=${Keyword}&pageNum=${SearchList.getNextPage()}|}">&raquo;</a>
-                    </li>
-                </ul>
-            </div>
+                <div id="content-area">
+                    <div id="category-data" th:data-category="${category}"></div>
+                    <div id="keyword-data" th:data-keyword="${Keyword}"></div>
+                    <div class="row pb-3 border-bottom pt-3" th:if="${#lists.size(SearchList.getList())} > 0 " th:each="item : ${SearchList.getList()}">
+                        <div class="col-sm-6" style="border-color: rgb(235,235,235); background-color: rgb(255,255,255)">
+                            <div class="position-relative" style="height: 240px; width: 100%;">
+                                <div class="overflow-hidden h-100">
+                                    <a href="#" th:href="@{|/SearchDetail/${item.UCSEQ}|}">
+                                        <img sizes="100vw" src="#" class="position-absolute h-100 w-100" style="inset: 0px; color: transparent; object-fit: cover; max-height: 240px; border-radius: 12px;" alt="#" th:src="@{|${item.MAINIMGTHUMB}|}" th:if="${item.MAINIMGTHUMB} != null">
+                                        <div th:unless="${item.MAINIMGTHUMB} != null" class="position-absolute h-100 w-100" style="inset: 0px; background: lightgray; object-fit: cover; border-radius: 12px;"></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <p class="mb-0" style="color: rgb(112 112 112)" th:text="${item.GUGUNNM}">구군</p>
+                            <h2 class="mt-1" style="font-size: 1.1em; font-weight: 700" th:text="${item.MAINTITLE}">명소이름</h2>
+                            <br>
+                            <p th:text="${#strings.isEmpty(item.USAGEAMOUNT) ? '' : item.USAGEAMOUNT}">요금</p>
+                        </div>
+                    </div>
+                    <div class="row pb-3 border-bottom pt-3" th:unless="${#lists.size(SearchList.getList())} > 0">
+                        <div class="text-center">
+                            <p>조회된 데이터가 없습니다.</p>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item" th:classappend="${SearchList.getPrePage() == 0} ? 'disabled' ">
+                                <a href="#" class="page-link" th:href="@{|/SearchList?category=${category}&Keyword=${Keyword}&pageNum=${SearchList.getPrePage()}|}">&laquo;</a>
+                            </li>
+                            <li class="page-item" th:each="page : ${#numbers.sequence(SearchList.getNavigateFirstPage(), SearchList.getNavigateLastPage())}"
+                                th:classappend="${page == SearchList.getPageNum()} ? 'active' ">
+                                <a href="#" class="page-link" th:href="@{|/SearchList?category=${category}&Keyword=${Keyword}&pageNum=${page}|}" th:text="${page}">1</a>
+                            </li>
+                            <li class="page-item" th:classappend="${SearchList.getNextPage() == 0} ? 'disabled' ">
+                                <a href="#" class="page-link" th:href="@{|/SearchList?category=${category}&Keyword=${Keyword}&pageNum=${SearchList.getNextPage()}|}">&raquo;</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </section>
         </div>
         <script>
             $(document).ready(function () {
                 // 카테고리 들고오기
                 var category = $("#category-data").data("category");
-
-               // 버튼 클릭 시 ACTIVE 이동
-               $('.circle-button').on('click', function () {
-                  $('.circle-button').removeClass('active');
-                  $(this).addClass('active');
-               });
+                var keyword = $("#keyword-data").data("keyword");
 
                // 전체 버튼 클릭 시 목록 불러오기
                 $("#all-lists-btn").on("click", function () {
+                    $('.circle-button').removeClass('active');
+                    $(this).addClass('active');
                    $.ajax({
                        url: `/SearchList?category=`+category + `&Keyword=`,
                        method: 'GET',
                        success: function (data) {
-                           window.location.href= `/SearchList?category=`+category + `&Keyword=`;
+                           $('#content-area').html(data);
+                           var newUrl = `/SearchList?category=`+category + `&Keyword=`;
+                           history.pushState(null, null, newUrl);
                        },
                        error: function () {
                            alert("전체 목록을 가져오는 중 오류 발생");
@@ -202,11 +208,15 @@
                 // 구군 버튼 클릭 시 해당 지역 목록 불러오기
                 $(".gugun-filter").on("click", function () {
                     var gugun = $(this).data('gugun').trim();
+                    $('.circle-button').removeClass('active');
+                    $(this).addClass('active');
                     $.ajax({
-                        url: `/SearchList?category=`+category + `&Keyword=` + gugun,
+                        url: `/SearchList?category=`+category + `&Keyword=${gugun}`,
                         method: 'GET',
                         success: function (data) {
-                            window.location.href= `/SearchList?category=`+category + `&Keyword=` + gugun;
+                            $('#content-area').html(data);
+                            var newUrl = `/SearchList?category=`+category + `&Keyword=${gugun}`;
+                            history.pushState(null, null, newUrl);
                         },
                         error: function () {
                             alert("목록을 가져오는 중 오류 발생");
@@ -216,7 +226,6 @@
 
             });
         </script>
-        <div id="category-data" th:data-category="${category}"></div>
     </main>
     <div th:replace="~{/layout/Footer :: footer}"></div>
 </body>

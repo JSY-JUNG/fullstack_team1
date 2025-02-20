@@ -7,6 +7,7 @@ import bitc.fullstack503.team1.dto.mysql.MySpotDTO;
 import bitc.fullstack503.team1.service.main.ReviewService;
 import bitc.fullstack503.team1.service.main.SearchListService;
 import com.github.pagehelper.PageInfo;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,7 @@ public class MainController {
 
 
     @GetMapping("/SearchList")
-    public ModelAndView SearchList(@RequestParam("category") String category, @RequestParam("Keyword") String Keyword, @RequestParam(required = false, defaultValue = "1", value = "pageNum") int pageNum) throws Exception {
+    public ModelAndView SearchList(@RequestParam("category") String category, @RequestParam("Keyword") String Keyword, @RequestParam(required = false, defaultValue = "1", value = "pageNum") int pageNum, HttpServletRequest req) throws Exception {
         ModelAndView mv = new ModelAndView("/main/jsy/SearchList");
 
         PageInfo<MySpotDTO> SearchListA;
@@ -44,10 +45,15 @@ public class MainController {
         mv.addObject("Keyword", Keyword);
         mv.addObject("category", category);
         mv.addObject("gugunList", gugunList);
+
+        if ("XMLHttpRequest".equals(req.getHeader("X-Requested-With"))) {
+            mv.setViewName("main/jsy/itemList :: itemListFragment");
+        }
+
         return mv;
     }
 
-    @GetMapping("/knh/{UCSEQ}")
+    @GetMapping("/SearchDetail/{UCSEQ}")
     public ModelAndView knh(@PathVariable("UCSEQ") int UCSEQ) throws Exception {
         ModelAndView mv = new ModelAndView("main/knh/spotDetailTest");
         MySpotDTO spotDetail = searchListService.selectDetail(UCSEQ);

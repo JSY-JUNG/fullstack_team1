@@ -2,6 +2,8 @@ package bitc.fullstack503.team1.dto.mysql;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class MyReviewBoardDTO {
     private int reviewIdx;
@@ -15,4 +17,6 @@ public class MyReviewBoardDTO {
     
     // join 해서 이미지 들고옴
     private String imageUrl;
+
+    private List<ReviewImageDTO> fileList;
 }
