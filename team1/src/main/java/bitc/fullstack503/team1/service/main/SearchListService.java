@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface SearchListService {
 
-    MySpotDTO selectDetail(int ucseq) throws Exception;
+    MySpotDTO selectDetailSpot(int ucseq) throws Exception;
 
     int SelectABtype(String keyword, String category, int pageNum) throws Exception;
 
@@ -18,4 +18,7 @@ public interface SearchListService {
 
 
     List<MySpotDTO> selectGugunList() throws Exception;
+
+    MyPlaceDTO selectDetailPlace(int ucseq) throws Exception;
+
 }

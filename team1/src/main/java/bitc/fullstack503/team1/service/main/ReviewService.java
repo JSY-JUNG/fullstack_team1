@@ -2,30 +2,18 @@ package bitc.fullstack503.team1.service.main;
 
 import bitc.fullstack503.team1.dto.mysql.MyReviewBoardDTO;
 import bitc.fullstack503.team1.dto.mysql.ReviewImageDTO;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.List;
 
 public interface ReviewService {
-    List<MyReviewBoardDTO> selectDetailReviewCardList(int ucseq) throws Exception;
+    List<MyReviewBoardDTO> selectDetailReviewCardListA(int ucseq) throws Exception;
+
+    List<MyReviewBoardDTO> selectDetailReviewCardListB(int ucseq) throws Exception;
+
+    void insertReviewA(MyReviewBoardDTO review, MultipartHttpServletRequest multipart) throws Exception;
+
+    void insertReviewB(MyReviewBoardDTO review, MultipartHttpServletRequest multipart) throws Exception;
 
 
-    //knh
-
-    //  게시물 목록
-    List<MyReviewBoardDTO> selectBoardList();
-
-    //  게시물 상세
-    MyReviewBoardDTO selectBoardDetail(int reviewIdx);
-
-    //  게시물 등록
-    void insertBoard(MyReviewBoardDTO board);
-
-    //  게시물 수정
-    void updateBoard(MyReviewBoardDTO board);
-
-    //  게시물 삭제
-    void deleteBoard(int reviewIdx);
-
-
-    public MyReviewBoardDTO selectBoardFileInfo(int reviewImageIdx, int reviewIdx) throws Exception;
 }

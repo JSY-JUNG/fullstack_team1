@@ -25,7 +25,6 @@
 <!--        </div>-->
         <div>
             <div class=" d-flex justify-content-start gap-3 flex-wrap">
-
                 <div class="item" th:if="${#lists.size(reviewBoard)} > 0" th:each="reviewBoard : ${reviewBoard}">
                     <ul class="reveiw-count-main p-3">
 <!--                        예시이미지-->
@@ -50,22 +49,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="item" th:unless="${#lists.size(reviewBoard)} > 0">
-                    <ul class="reveiw-count-main p-3">
-                        <!--                        예시이미지-->
-                        <li class="float-start" style="width: 150px; height: 150px; background-color: #bbbbbb"></li>
-                        <li class="float-end">리뷰내용 입니다. 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 </li>
-                    </ul>
-                    <div class="reveiw-count-sub d-flex justify-content-between p-3">
-                        <div>
-                            별점 아이콘
-                        </div>
-                        <div>
-                            <span>아이디</span>
-                            <span>|</span>
-                            <span>2025-02-12</span>
-                        </div>
-                    </div>
+            </div>
+            <div class="mt-4" th:unless="${#lists.size(reviewBoard)} > 0">
+                <div class="text-center">
+                    <p>조회된 리뷰가 없습니다.</p>
                 </div>
             </div>
         </div>

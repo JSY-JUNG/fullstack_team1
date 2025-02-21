@@ -28,7 +28,7 @@
       <div class="col-sm-6" style="border-color: rgb(235,235,235); background-color: rgb(255,255,255)">
         <div class="position-relative" style="height: 240px; width: 100%;">
           <div class="overflow-hidden h-100">
-            <a href="#" th:href="@{|/SearchDetail/${item.UCSEQ}|}">
+            <a href="#" th:href="@{|/SearchDetail/${item.UCSEQ}?category=${category}|}">
               <img sizes="100vw" src="#" class="position-absolute h-100 w-100" style="inset: 0px; color: transparent; object-fit: cover; max-height: 240px; border-radius: 12px;" alt="#" th:src="@{|${item.MAINIMGTHUMB}|}" th:if="${item.MAINIMGTHUMB} != null">
               <div th:unless="${item.MAINIMGTHUMB} != null" class="position-absolute h-100 w-100" style="inset: 0px; background: lightgray; object-fit: cover; border-radius: 12px;"></div>
             </a>

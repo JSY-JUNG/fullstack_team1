@@ -29,14 +29,14 @@
             <span></span>
             <span></span>
         </div>
-            <h1 th:text="${spotDetail.MAINTITLE}">명소이름</h1>
+            <h1 th:text="${Detail.MAINTITLE}">이름</h1>
             <!-- 명소 썸네일 상세 이미지 -->
            <div class="thumbnail-main-img">
-               <img class="thumbnail-main-img" src="#" alt="#" th:src="@{|${spotDetail.MAINIMGNORMAL}|}">
+               <img class="thumbnail-main-img" src="#" alt="#" th:src="@{|${Detail.MAINIMGNORMAL}|}">
            </div>
 
-            <span class="star" th:text="${spotDetail.SCOPEAVG}">별점</span>
-            <p class="spot-contents" th:text="${spotDetail.ITEMCNTNTS}">상세내용</p>
+            <span class="star" th:text="${Detail.SCOPEAVG}">별점</span>
+            <p class="spot-contents" th:text="${Detail.ITEMCNTNTS}">상세내용</p>
 
     </div>
 </section>

@@ -15,7 +15,7 @@ import java.util.List;
 
 @Component
 public class ImageUtil {
-    public List<ReviewImageDTO> parseFileInfo(int reviewIdx, String userId, MultipartHttpServletRequest multipart) throws Exception {
+    public static List<ReviewImageDTO> parseFileInfo(int reviewIdx, String userId, MultipartHttpServletRequest multipart) throws Exception {
 
         if(ObjectUtils.isEmpty(multipart)){
             return null;
@@ -63,6 +63,7 @@ public class ImageUtil {
                 ReviewImageDTO.setFileSize(uploadFile.getSize());
                 ReviewImageDTO.setOriginalFileName(uploadFile.getOriginalFilename());
                 ReviewImageDTO.setStoredFileName(path + "/" + newFileName);
+                ReviewImageDTO.setImageUrl(path + "/" + newFileName);
                 ReviewImageDTO.setUserId(userId);
 
 

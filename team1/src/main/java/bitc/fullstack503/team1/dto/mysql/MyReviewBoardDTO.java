@@ -18,5 +18,5 @@ public class MyReviewBoardDTO {
     // join 해서 이미지 들고옴
     private String imageUrl;
 
-    private List<ReviewImageDTO> fileList;
+    private List<ReviewImageDTO> ImgList;
 }

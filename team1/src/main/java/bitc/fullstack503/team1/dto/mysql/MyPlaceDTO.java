@@ -18,4 +18,7 @@ public class MyPlaceDTO {
     private String LAT; //위도
     private String LNG; //경도
     private String USAGEAMOUNT;
+
+    private String HLDYINFO;
+    private String TRFCINFO;
 }

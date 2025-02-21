@@ -9,23 +9,23 @@ import java.util.List;
 
 @Mapper
 public interface ReviewMapper {
-    List<MyReviewBoardDTO> selectDetailReviewCardList(int ucseq) throws Exception;
+    List<MyReviewBoardDTO> selectDetailReviewCardListA(int ucseq) throws Exception;
 
+    List<MyReviewBoardDTO> selectDetailReviewCardListB(int ucseq) throws Exception;
 
-    //knh
+    void insertReviewA(MyReviewBoardDTO review) throws Exception;
 
-    List<MyReviewBoardDTO> selectBoardList();
+    void insertReviewImgListA(List<ReviewImageDTO> imgList) throws Exception;
 
-    MyReviewBoardDTO selectBoardDetail(int reviewIdx);
+    void insertReviewB(MyReviewBoardDTO review) throws Exception;
 
-    void insertBoard(MyReviewBoardDTO board);
+    void insertReviewImgListB(List<ReviewImageDTO> imgList) throws Exception;
 
-    void updateBoard(MyReviewBoardDTO board);
+    int avgRatingA(int ucseq) throws Exception;
 
-    void deleteBoard(int reviewIdx);
+    void updateSpotRating(int ucseq, int avgRating) throws Exception;
 
+    int avgRatingB(int ucseq) throws Exception;
 
-    public void insertBoardFileList(List<MyReviewBoardDTO> fileList) throws Exception;
-    public MyReviewBoardDTO selectBoardFileInfo(@Param("reviewImageIdx") int reviewImageIdx, @Param("reviewIdx") int reviewIdx) throws Exception;
-    public List<MyReviewBoardDTO> selectBoardFileList(@Param("reviewIdx") int reviewIdx) throws Exception;
+    void updatePlaceRating(int ucseq, int avgRating) throws Exception;
 }

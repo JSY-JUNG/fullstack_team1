@@ -10,11 +10,13 @@ import java.util.List;
 @Mapper
 public interface ListMapper {
 
-    MySpotDTO selectDetail(int ucseq) throws Exception;
+    MySpotDTO selectDetailSpot(int ucseq) throws Exception;
 
     Page<MySpotDTO> selectPageSearchListA(String keyword) throws Exception;
 
     Page<MyPlaceDTO> selectPageSearchListB(String keyword) throws Exception;
 
     List<MySpotDTO> selectGugunList() throws Exception;
+
+    MyPlaceDTO selectDetailPlace(int ucseq) throws Exception;
 }

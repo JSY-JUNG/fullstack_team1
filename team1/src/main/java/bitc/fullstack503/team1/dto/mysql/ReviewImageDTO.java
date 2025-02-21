@@ -11,5 +11,5 @@ public class ReviewImageDTO {
     private String originalFileName; // 원본이미지 이름
     private String storedFileName; // 외부이미지 위치 경로
     private long fileSize; // 파일 크기
-    private String userId; // 리뷰보드
+    private String userId; // 리뷰 작성자
 }

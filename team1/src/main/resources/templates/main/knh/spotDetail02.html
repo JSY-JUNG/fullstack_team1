@@ -18,20 +18,24 @@
     <div class="section-inner">
         <div class="spot-info">
             <dl>
-                <dd><span class="me-3 spot-span">전화번호</span><span style="color: rgb(130, 130, 130)" th:text="${spotDetail.CNTCTTEL}">전화번호텍스트</span></dd>
+                <dd><span class="me-3 spot-span">전화번호</span><span style="color: rgb(130, 130, 130)" th:text="${Detail.CNTCTTEL}">전화번호텍스트</span></dd>
             </dl>
             <dl>
-                <dd><span class="me-3 spot-span">이용시간 및 운영일</span><span style="color: rgb(130, 130, 130)" th:text="${#strings.isEmpty(spotDetail.USAGEDAYWEEKANDTIME) ? '제한없음' : spotDetail.USAGEDAYWEEKANDTIME}">이용시간텍스트</span></dd>
+                <dd><span class="me-3 spot-span">이용시간 및 운영일</span><span style="color: rgb(130, 130, 130)" th:text="${#strings.isEmpty(Detail.USAGEDAYWEEKANDTIME) ? '제한없음' : Detail.USAGEDAYWEEKANDTIME}">이용시간텍스트</span></dd>
             </dl>
             <dl>
-                <dd><span class="me-3 spot-span">휴무일</span><span style="color: rgb(130, 130, 130)" th:text="${#strings.isEmpty(spotDetail.HLDYINFO) ? '연중무휴' : spotDetail.HLDYINFO}">휴무일텍스트</span></dd>
+                <dd><span class="me-3 spot-span">휴무일</span><span style="color: rgb(130, 130, 130)" th:text="${#strings.isEmpty(Detail.HLDYINFO) ? '연중무휴' : Detail.HLDYINFO}">휴무일텍스트</span></dd>
             </dl>
             <dl>
-                <dd><span class="me-3 spot-span">주소</span><span style="color: rgb(130, 130, 130)" th:text="${spotDetail.ADDR1}">주소텍스트</span></dd>
+                <dd><span class="me-3 spot-span">주소</span><span style="color: rgb(130, 130, 130)" th:text="${Detail.ADDR1}">주소텍스트</span></dd>
             </dl>
-            <dl>
+            <dl th:if="${Detail.TRFCINFO != null}">
                 <dt></dt>
-                <dd><span class="me-3 spot-span">교통정보</span><span style="color: rgb(130, 130, 130)" th:text="${spotDetail.TRFCINFO}">교통정보텍스트</span></dd>
+                <dd><span class="me-3 spot-span">교통정보</span><span style="color: rgb(130, 130, 130)" th:text="${Detail.TRFCINFO}">교통정보텍스트</span></dd>
+            </dl>
+            <dl th:unless="${Detail.TRFCINFO != null}">
+                <dt></dt>
+                <dd><span class="me-3 spot-span">대표메뉴</span><span style="color: rgb(130, 130, 130)" th:text="${Detail.RPRSNTVMENU}">대표메뉴텍스트</span></dd>
             </dl>
 
         </div>

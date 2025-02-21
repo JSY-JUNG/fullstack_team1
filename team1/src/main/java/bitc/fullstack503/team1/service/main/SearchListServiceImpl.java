@@ -18,8 +18,8 @@ public class SearchListServiceImpl implements SearchListService {
 
 
     @Override
-    public MySpotDTO selectDetail(int ucseq) throws Exception {
-        return listMapper.selectDetail(ucseq);
+    public MySpotDTO selectDetailSpot(int ucseq) throws Exception {
+        return listMapper.selectDetailSpot(ucseq);
     }
 
 
@@ -42,6 +42,11 @@ public class SearchListServiceImpl implements SearchListService {
     @Override
     public List<MySpotDTO> selectGugunList() throws Exception {
         return listMapper.selectGugunList();
+    }
+
+    @Override
+    public MyPlaceDTO selectDetailPlace(int ucseq) throws Exception {
+        return listMapper.selectDetailPlace(ucseq);
     }
 
     @Override

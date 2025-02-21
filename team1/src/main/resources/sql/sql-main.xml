@@ -8,8 +8,12 @@
         ORDER BY UC_SEQ ASC
         LIMIT 1, 10
     </select>
-    <select id="selectDetail" resultType="bitc.fullstack503.team1.dto.mysql.MySpotDTO">
+    <select id="selectDetailSpot" resultType="bitc.fullstack503.team1.dto.mysql.MySpotDTO">
         SELECT * FROM SPOT
+        WHERE UC_SEQ = #{UCSEQ}
+    </select>
+    <select id="selectDetailPlace" resultType="bitc.fullstack503.team1.dto.mysql.MyPlaceDTO">
+        SELECT * FROM PLACE
         WHERE UC_SEQ = #{UCSEQ}
     </select>
     <select id="selectPageSearchListA" parameterType="String" resultType="bitc.fullstack503.team1.dto.mysql.MySpotDTO">

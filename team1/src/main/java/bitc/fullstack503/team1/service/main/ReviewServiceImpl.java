@@ -3,8 +3,11 @@ package bitc.fullstack503.team1.service.main;
 import bitc.fullstack503.team1.dto.mysql.MyReviewBoardDTO;
 import bitc.fullstack503.team1.dto.mysql.ReviewImageDTO;
 import bitc.fullstack503.team1.mapper.main.ReviewMapper;
+import bitc.fullstack503.team1.util.ImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.List;
 
@@ -16,45 +19,34 @@ public class ReviewServiceImpl implements ReviewService {
 
 
     @Override
-    public List<MyReviewBoardDTO> selectDetailReviewCardList(int ucseq) throws Exception {
-        return reviewMapper.selectDetailReviewCardList(ucseq);
-    }
-
-
-    // knh
-
-    //목록
-    @Override
-    public List<MyReviewBoardDTO> selectBoardList() {
-        return reviewMapper.selectBoardList();
-    }
-
-    //  게시물 상세
-    @Override
-    public MyReviewBoardDTO selectBoardDetail(int reviewIdx) {
-        return reviewMapper.selectBoardDetail(reviewIdx);
-    }
-
-    //  게시물 등록
-    @Override
-    public void insertBoard(MyReviewBoardDTO board) {
-        reviewMapper.insertBoard(board);
-    }
-
-    //  게시물 수정
-    @Override
-    public void updateBoard(MyReviewBoardDTO board) {
-        reviewMapper.updateBoard(board);
-    }
-
-    //  게시물 삭제
-    @Override
-    public void deleteBoard(int reviewIdx) {
-        reviewMapper.deleteBoard(reviewIdx);
+    public List<MyReviewBoardDTO> selectDetailReviewCardListA(int ucseq) throws Exception {
+        return reviewMapper.selectDetailReviewCardListA(ucseq);
     }
 
     @Override
-    public MyReviewBoardDTO selectBoardFileInfo(int reviewImageIdx, int reviewIdx) throws Exception {
-        return reviewMapper.selectBoardFileInfo(reviewImageIdx, reviewIdx);
+    public List<MyReviewBoardDTO> selectDetailReviewCardListB(int ucseq) throws Exception {
+        return reviewMapper.selectDetailReviewCardListB(ucseq);
+    }
+
+    @Override
+    public void insertReviewA(MyReviewBoardDTO review, MultipartHttpServletRequest multipart) throws Exception {
+        reviewMapper.insertReviewA(review);
+        List<ReviewImageDTO> imgList = ImageUtil.parseFileInfo(review.getReviewIdx(), review.getUserId(), multipart);
+        if(!CollectionUtils.isEmpty(imgList)){
+            reviewMapper.insertReviewImgListA(imgList);
+        }
+        int avgRating = reviewMapper.avgRatingA(review.getUCSEQ());
+        reviewMapper.updateSpotRating(review.getUCSEQ(), avgRating);
+    }
+
+    @Override
+    public void insertReviewB(MyReviewBoardDTO review, MultipartHttpServletRequest multipart) throws Exception {
+        reviewMapper.insertReviewB(review);
+        List<ReviewImageDTO> imgList = ImageUtil.parseFileInfo(review.getReviewIdx(), review.getUserId(), multipart);
+        if(!CollectionUtils.isEmpty(imgList)){
+            reviewMapper.insertReviewImgListB(imgList);
+        }
+        int avgRating = reviewMapper.avgRatingB(review.getUCSEQ());
+        reviewMapper.updatePlaceRating(review.getUCSEQ(), avgRating);
     }
 }
