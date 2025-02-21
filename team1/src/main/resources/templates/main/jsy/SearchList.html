@@ -39,12 +39,34 @@
             color: white;
             border: none;
         }
+        .filled-star {
+            color: gold; /* 채워진 별은 금색 */
+        }
+
+        .empty-star {
+            color: lightgray; /* 비어있는 별은 연한 회색 */
+        }
+        .searchlist h1{
+            margin-right: 16px;
+            display: flex;
+            flex: 1 1 0%;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 1.5rem;
+        }
+        .searchlist h1 span{
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-break: break-all;
+        }
     </style>
 </head>
 <body>
     <div th:replace="~{/layout/Header :: header}"></div>
     <main class="container">
-        <div class="d-flex gap-4">
+        <div class="d-flex" style="gap: 100px;">
             <aside>
                 <div class="pb-3 pt-3">
                     <div class="d-flex justify-content-between align-items-center">
@@ -59,75 +81,25 @@
 <!--                        </a>-->
                     </div>
                 </div>
-
 <!--                <div class="d-flex flex-column align-items-start">-->
 <!--                    <div class="d-inline-flex align-items-center pb-3 pt-3">-->
 <!--                        <button id="spotBtn" class="circle-button"></button>-->
 <!--                        <span>관광명소만 보기</span>-->
 <!--                    </div>-->
 <!--                </div>-->
-
                 <div class="d-flex flex-column align-items-start border-top">
                     <div class="pb-2 pt-2 w-100">
                         <div class="pb-3 pt-3 mb-1">
                             <h3 style="font-size: 1rem; font-weight: 700" class="align-items-center d-flex">위치</h3>
                         </div>
-
                         <div class="d-flex flex-column pb-3">
                             <div class="d-inline-flex align-items-center pb-3 pt-3">
                                 <button id="all-lists-btn" class="circle-button"></button>
                                 <span>전체</span>
                             </div>
-
                             <div th:each="gugun : ${gugunList}" class="d-inline-flex align-items-center pb-3 pt-3">
                                 <button class="circle-button gugun-filter" th:data-gugun="${gugun.GUGUNNM}"></button>
                                 <span th:text="${gugun.GUGUNNM}">구군</span>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-                <div class="d-flex flex-column align-items-start border-top border-bottom">
-                    <div class="pb-2 pt-2 w-100">
-                        <div class="pb-3 pt-3 mb-1">
-                            <h3 style="font-size: 1rem; font-weight: 700" class="align-items-center d-flex">별점</h3>
-                        </div>
-                        <div class="d-flex flex-column pb-3">
-                            <div class="d-inline-flex align-items-center pb-3 pt-3">
-                                <a href="#" class="text-decoration-none d-flex align-items-center" style="color: rgb(51 51 51)">
-                                    <!--                                    <svg class="me-1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg>-->
-                                    <svg class="me-1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="vertical-align: 0;"><path style="fill: #0a53be" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>
-                                    <span>★ ★ ★ ★ ★</span>
-                                </a>
-                            </div>
-                            <div class="d-inline-flex align-items-center pb-3 pt-3">
-                                <a href="#" class="text-decoration-none d-flex align-items-center" style="color: rgb(51 51 51)">
-                                    <svg class="me-1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg>
-                                    <!--                                    <svg class="me-1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="vertical-align: 0;"><path style="fill: #0a53be" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>-->
-                                    <span>★ ★ ★ ★</span>
-                                </a>
-                            </div>
-                            <div class="d-inline-flex align-items-center pb-3 pt-3">
-                                <a href="#" class="text-decoration-none d-flex align-items-center" style="color: rgb(51 51 51)">
-                                    <svg class="me-1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg>
-                                    <!--                                    <svg class="me-1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="vertical-align: 0;"><path style="fill: #0a53be" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>-->
-                                    <span>★ ★ ★</span>
-                                </a>
-                            </div>
-                            <div class="d-inline-flex align-items-center pb-3 pt-3">
-                                <a href="#" class="text-decoration-none d-flex align-items-center" style="color: rgb(51 51 51)">
-                                    <svg class="me-1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg>
-                                    <!--                                    <svg class="me-1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="vertical-align: 0;"><path style="fill: #0a53be" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>-->
-                                    <span>★ ★</span>
-                                </a>
-                            </div>
-                            <div class="d-inline-flex align-items-center pb-3 pt-3">
-                                <a href="#" class="text-decoration-none d-flex align-items-center" style="color: rgb(51 51 51)">
-                                    <svg class="me-1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg>
-                                    <!--                                    <svg class="me-1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="vertical-align: 0;"><path style="fill: #0a53be" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>-->
-                                    <span>★</span>
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -137,6 +109,12 @@
             <section class="flex-grow-1">
                 <!-- 상품 목록 -->
                 <div id="content-area">
+                    <div class="searchlist">
+                        <h1>
+                            <span class="pe-4" th:text="|&apos;${#strings.isEmpty(Keyword) ? '전체' : Keyword}&apos;|">123</span>
+                            <span th:text="|검색결과 ${countResult}개|"></span>
+                        </h1>
+                    </div>
                     <div id="category-data" th:data-category="${category}"></div>
                     <div id="keyword-data" th:data-keyword="${Keyword}"></div>
                     <div class="row pb-3 border-bottom pt-3" th:if="${#lists.size(SearchList.getList())} > 0 " th:each="item : ${SearchList.getList()}">
@@ -153,7 +131,13 @@
                         <div class="col-sm">
                             <p class="mb-0" style="color: rgb(112 112 112)" th:text="${item.GUGUNNM}">구군</p>
                             <h2 class="mt-1" style="font-size: 1.1em; font-weight: 700" th:text="${item.MAINTITLE}">명소이름</h2>
-                            <br>
+                            <div class="mt-2 mb-2">
+                                <span th:each="i : ${#numbers.sequence(1, 5)}">
+                                    <span style="font-size:20px;" th:class="${i <= (item.SCOPEAVG != null ? item.SCOPEAVG : 0) ? 'filled-star' : 'empty-star'}">
+                                        ★
+                                    </span>
+                                </span>
+                            </div>
                             <p th:text="${#strings.isEmpty(item.USAGEAMOUNT) ? '' : item.USAGEAMOUNT}">요금</p>
                         </div>
                     </div>

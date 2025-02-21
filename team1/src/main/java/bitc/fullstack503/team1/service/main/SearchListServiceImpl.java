@@ -50,6 +50,16 @@ public class SearchListServiceImpl implements SearchListService {
     }
 
     @Override
+    public int SelectCountResult(String keyword) throws Exception {
+        return listMapper.selectCountResult(keyword);
+    }
+
+    @Override
+    public int SelectCountResultB(String keyword) throws Exception {
+        return listMapper.selectCountResultB(keyword);
+    }
+
+    @Override
     public int SelectABtype(String keyword, String category, int pageNum) throws Exception {
 
         int result;

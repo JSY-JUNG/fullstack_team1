@@ -19,4 +19,8 @@ public interface ListMapper {
     List<MySpotDTO> selectGugunList() throws Exception;
 
     MyPlaceDTO selectDetailPlace(int ucseq) throws Exception;
+
+    int selectCountResult(String keyword) throws Exception;
+
+    int selectCountResultB(String keyword) throws Exception;
 }

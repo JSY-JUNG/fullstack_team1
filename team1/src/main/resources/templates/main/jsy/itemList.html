@@ -22,6 +22,12 @@
 </head>
 <body>
   <div th:fragment="itemListFragment">
+    <div class="searchlist">
+      <h1>
+        <span class="pe-4" th:text="|&apos;${#strings.isEmpty(Keyword) ? '전체' : Keyword}&apos;|">123</span>
+        <span th:text="|검색결과 ${countResult}개|"></span>
+      </h1>
+    </div>
     <div id="category-data" th:data-category="${category}"></div>
     <div id="keyword-data" th:data-keyword="${Keyword}"></div>
     <div class="row pb-3 border-bottom pt-3" th:if="${#lists.size(SearchList.getList())} > 0" th:each="item : ${SearchList.getList()}">
@@ -38,7 +44,13 @@
       <div class="col-sm">
         <p class="mb-0" style="color: rgb(112 112 112)" th:text="${item.GUGUNNM}">구군</p>
         <h2 class="mt-1" style="font-size: 1.1em; font-weight: 700" th:text="${item.MAINTITLE}">명소이름</h2>
-        <br>
+        <div class="mt-2 mb-2">
+          <span th:each="i : ${#numbers.sequence(1, 5)}">
+              <span style="font-size:20px;" th:class="${i <= (item.SCOPEAVG != null ? item.SCOPEAVG : 0) ? 'filled-star' : 'empty-star'}">
+                  ★
+              </span>
+          </span>
+        </div>
         <p th:text="${#strings.isEmpty(item.USAGEAMOUNT) ? '' : item.USAGEAMOUNT}">요금</p>
       </div>
     </div>

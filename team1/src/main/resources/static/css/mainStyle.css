@@ -451,3 +451,11 @@ input::placeholder {
     border-bottom: 2px solid black;
     color: black;
 }
+
+.filled-star {
+    color: gold; /* 채워진 별은 금색 */
+}
+
+.empty-star {
+    color: lightgray; /* 비어있는 별은 연한 회색 */
+}

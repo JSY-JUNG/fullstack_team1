@@ -14,7 +14,7 @@ public class MyPlaceDTO {
     private String ITEMCNTNTS; // 상세내용
     private String RPRSNTVMENU; // 메뉴
     private String CNTCTTEL; // 연락처
-    private String SCOPEAVG; // 평점
+    private int SCOPEAVG; // 평점
     private String LAT; //위도
     private String LNG; //경도
     private String USAGEAMOUNT;

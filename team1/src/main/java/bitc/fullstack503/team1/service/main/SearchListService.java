@@ -21,4 +21,7 @@ public interface SearchListService {
 
     MyPlaceDTO selectDetailPlace(int ucseq) throws Exception;
 
+    int SelectCountResult(String keyword) throws Exception;
+
+    int SelectCountResultB(String keyword) throws Exception;
 }

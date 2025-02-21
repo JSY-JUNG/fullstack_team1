@@ -34,9 +34,14 @@
            <div class="thumbnail-main-img">
                <img class="thumbnail-main-img" src="#" alt="#" th:src="@{|${Detail.MAINIMGNORMAL}|}">
            </div>
-
-            <span class="star" th:text="${Detail.SCOPEAVG}">별점</span>
-            <p class="spot-contents" th:text="${Detail.ITEMCNTNTS}">상세내용</p>
+        <div class="mt-2 mb-2">
+            <span th:each="i : ${#numbers.sequence(1, 5)}">
+                <span style="font-size:20px;" th:class="${i <= (Detail.SCOPEAVG != null ? Detail.SCOPEAVG : 0) ? 'filled-star' : 'empty-star'}">
+                    ★
+                </span>
+            </span>
+        </div>
+        <p class="spot-contents" th:text="${Detail.ITEMCNTNTS}">상세내용</p>
 
     </div>
 </section>

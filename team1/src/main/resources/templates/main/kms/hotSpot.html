@@ -27,7 +27,17 @@
             </a>
         </div>
         <div class="hotSpot__des">
-            <h2 class="hotSpot__des__title" th:text="${spotRank.MAINTITLE}">수영사적공원</h2>
+            <div class="d-flex align-items-center">
+                <h2 class="hotSpot__des__title" th:text="${spotRank.MAINTITLE}">수영사적공원</h2>
+                <div class="flex-grow-1" style="padding-left: 30px; padding-bottom: 14px; font-size: 34px;">
+                <span th:each="i : ${#numbers.sequence(1, 5)}">
+                    <span th:class="${i <= (spotRank.SCOPEAVG != null ? spotRank.SCOPEAVG : 0) ? 'filled-star' : 'empty-star'}">
+                        ★
+                    </span>
+                </span>
+                </div>
+            </div>
+
             <div class="hotSpot__des__container">
                 <div class="hotSpot__des__key">
                     <ul>
@@ -40,9 +50,9 @@
                 <div class="hotSpot__des__value">
                     <ul>
                         <li th:text="${spotRank.ADDR1}">부산광역시 수영구 수영성로 43</li>
-                        <li th:text="${spotRank.USAGEDAYWEEKANDTIME}">10:00 ~ 16:00</li>
-                        <li th:text="${spotRank.HLDYINFO}">월요일</li>
-                        <li th:text="${spotRank.USAGEAMOUNT}">18,000원</li>
+                        <li th:text="${#strings.isEmpty(spotRank.USAGEDAYWEEKANDTIME) ? '제한없음' : spotRank.USAGEDAYWEEKANDTIME}">10:00 ~ 16:00</li>
+                        <li th:text="${#strings.isEmpty(spotRank.HLDYINFO) ? '연중무휴' : spotRank.HLDYINFO}">월요일</li>
+                        <li th:text="${#strings.isEmpty(spotRank.USAGEAMOUNT) ? '무료' : spotRank.USAGEAMOUNT}">18,000원</li>
                     </ul>
                 </div>
             </div>

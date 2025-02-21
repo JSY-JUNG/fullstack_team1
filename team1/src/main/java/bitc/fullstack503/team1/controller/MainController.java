@@ -40,10 +40,14 @@ public class MainController {
 
         if(result == 1){
             SearchListA = new PageInfo<>(searchListService.SelectPageSearchListA(Keyword,pageNum), 5);
+            int countResult = searchListService.SelectCountResult(Keyword);
             mv.addObject("SearchList", SearchListA);
+            mv.addObject("countResult", countResult);
         }else{
             SearchListB = new PageInfo<>(searchListService.SelectPageSearchListB(Keyword,pageNum), 5);
+            int countResult = searchListService.SelectCountResultB(Keyword);
             mv.addObject("SearchList", SearchListB);
+            mv.addObject("countResult", countResult);
         }
         List<MySpotDTO> gugunList = searchListService.selectGugunList();
         mv.addObject("Keyword", Keyword);

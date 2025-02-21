@@ -17,24 +17,37 @@
         WHERE UC_SEQ = #{UCSEQ}
     </select>
     <select id="selectPageSearchListA" parameterType="String" resultType="bitc.fullstack503.team1.dto.mysql.MySpotDTO">
-        SELECT MAIN_TITLE, MAIN_IMG_THUMB, GUGUN_NM, USAGE_AMOUNT, UC_SEQ
+        SELECT MAIN_TITLE, MAIN_IMG_THUMB, GUGUN_NM, USAGE_AMOUNT, UC_SEQ, SCOPE_AVG
         FROM SPOT
         WHERE MAIN_TITLE LIKE CONCAT('%', #{Keyword}, '%')
             OR ADDR1 LIKE CONCAT('%', #{Keyword}, '%')
             OR GUGUN_NM LIKE CONCAT('%', #{Keyword}, '%')
-        ORDER BY MAIN_TITLE ASC
+        ORDER BY SCOPE_AVG DESC
     </select>
     <select id="selectPageSearchListB" parameterType="String" resultType="bitc.fullstack503.team1.dto.mysql.MyPlaceDTO">
-        SELECT MAIN_TITLE, MAIN_IMG_THUMB, GUGUN_NM, UC_SEQ
+        SELECT MAIN_TITLE, MAIN_IMG_THUMB, GUGUN_NM, UC_SEQ, SCOPE_AVG
         FROM PLACE
         WHERE MAIN_TITLE LIKE CONCAT('%', #{Keyword}, '%')
         OR ADDR1 LIKE CONCAT('%', #{Keyword}, '%')
         OR GUGUN_NM LIKE CONCAT('%', #{Keyword}, '%')
-        ORDER BY MAIN_TITLE ASC
+        ORDER BY SCOPE_AVG DESC
     </select>
 
     <select id="selectGugunList" resultType="bitc.fullstack503.team1.dto.mysql.MySpotDTO">
         select DISTINCT(gugun_nm) as gugun_nm from spot
         order by gugun_nm ASC;
+    </select>
+
+    <select id="selectCountResult" resultType="int" parameterType="String">
+        SELECT COUNT(*) FROM SPOT
+        WHERE MAIN_TITLE LIKE CONCAT('%', #{Keyword}, '%')
+        OR ADDR1 LIKE CONCAT('%', #{Keyword}, '%')
+        OR GUGUN_NM LIKE CONCAT('%', #{Keyword}, '%')
+    </select>
+    <select id="selectCountResultB" resultType="int" parameterType="String">
+        SELECT COUNT(*) FROM PLACE
+        WHERE MAIN_TITLE LIKE CONCAT('%', #{Keyword}, '%')
+        OR ADDR1 LIKE CONCAT('%', #{Keyword}, '%')
+        OR GUGUN_NM LIKE CONCAT('%', #{Keyword}, '%')
     </select>
 </mapper>
