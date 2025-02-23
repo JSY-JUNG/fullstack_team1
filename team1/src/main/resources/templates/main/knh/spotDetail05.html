@@ -33,6 +33,7 @@
                 frm.action = "/board/" + $("#board-idx").val();
                 frm.submit();
             });
+
         });
     </script>
 
@@ -40,9 +41,16 @@
 </head>
 <body>
 <section th:fragment="section5" class="section5">
+    <!--    로그아웃시 나타나는 버튼 -->
+
     <div class="section-inner">
         <h2>리뷰 작성하기</h2>
         <hr>
+        <!--    로그아웃시 나타나는 블러처리 효과 -->
+        <div th:if="${session.userId == null}">
+            <div class="review-blur"></div>
+            <button id="btn-login" class="review-blur-btn btn btn-dark" style="padding: 10px 30px">로그인 후 작성 해주세요 :)</button>
+        </div>
         <div class="row mt-3">
             <form action="/SearchDetail/reviewWrite" method="post" th:action="@{/SearchDetail/reviewWrite}" enctype="multipart/form-data">
                 <input type="hidden" name="UCSEQ" th:value="${Detail.UCSEQ}">

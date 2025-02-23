@@ -1,3 +1,6 @@
+* {
+    font-family: "Noto Sans KR", serif;
+}
 /* 전체 화면 위치 설정*/
 .full-body {
     position: absolute;
@@ -35,6 +38,7 @@ div.pass i {
 .h {
     width: 500px;
     height: 60px;
+    /*height: 50px; :hyun*/
 }
 
 /*shadow box size*/
@@ -42,6 +46,12 @@ div.pass i {
     width: 650px;
     height: 750px;
 }
+
+
+/*.b-shadow {*/
+/*    width: 630px;*/
+/*    height: 700px;*/
+/*} :hyun*/
 
 
 .text {

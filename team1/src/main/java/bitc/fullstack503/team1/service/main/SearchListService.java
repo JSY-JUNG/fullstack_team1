@@ -24,4 +24,10 @@ public interface SearchListService {
     int SelectCountResult(String keyword) throws Exception;
 
     int SelectCountResultB(String keyword) throws Exception;
+
+    void insertBookmark(String userId, int ucSeq) throws Exception;
+
+    void deleteBookmark(String userId, int ucSeq) throws Exception;
+
+    int selectBookmark(int ucseq, String userId) throws Exception;
 }

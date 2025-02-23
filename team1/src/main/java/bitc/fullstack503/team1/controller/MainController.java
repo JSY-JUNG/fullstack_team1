@@ -10,12 +10,11 @@ import bitc.fullstack503.team1.util.ScriptUtil;
 import com.github.pagehelper.PageInfo;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -62,9 +61,10 @@ public class MainController {
     }
 
     @GetMapping("/SearchDetail/{UCSEQ}")
-    public ModelAndView knh(@PathVariable("UCSEQ") int UCSEQ, @RequestParam("category") String category) throws Exception {
+    public ModelAndView knh(@PathVariable("UCSEQ") int UCSEQ, @RequestParam("category") String category, HttpSession session) throws Exception {
         ModelAndView mv = new ModelAndView("main/knh/spotDetailTest");
-
+        String userId = (String) session.getAttribute("userId");
+        int result = searchListService.selectBookmark(UCSEQ, userId);
         if ("A".equals(category)){
             MySpotDTO spotDetail = searchListService.selectDetailSpot(UCSEQ);
             List<MyReviewBoardDTO> reviewBoard = reviewService.selectDetailReviewCardListA(UCSEQ);
@@ -78,9 +78,25 @@ public class MainController {
             mv.addObject("reviewBoard", reviewBoard);
             mv.addObject("category", category);
         }
-
+        mv.addObject("result", result);
         return mv;
     }
+
+    @PostMapping("/SearchDetail/bookmark")
+    @ResponseBody
+    public void updateBookmark(@RequestParam("bookmark") boolean bookmark, @RequestParam("ucSeq") int ucSeq, HttpSession session) throws Exception {
+        String userId = (String) session.getAttribute("userId");
+        if(bookmark){
+            // 즐겨찾기 추가 처리
+            searchListService.insertBookmark(userId, ucSeq);
+            System.out.println("즐겨찾기 추가");
+        }else{
+            // 즐겨찾기 제거 처리
+            searchListService.deleteBookmark(userId, ucSeq);
+            System.out.println("즐겨찾기가 제거");
+        }
+    }
+
 
     @PostMapping("/SearchDetail/reviewWrite")
     public void insertReview(MyReviewBoardDTO review, MultipartHttpServletRequest multipart, HttpServletResponse res, String category) throws Exception{

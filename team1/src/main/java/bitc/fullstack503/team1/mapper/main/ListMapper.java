@@ -23,4 +23,10 @@ public interface ListMapper {
     int selectCountResult(String keyword) throws Exception;
 
     int selectCountResultB(String keyword) throws Exception;
+
+    void insertBookmark(String userId, int ucSeq) throws Exception;
+
+    void deleteBookmark(String userId, int ucSeq) throws Exception;
+
+    int selectBookmark(int ucseq, String userId) throws Exception;
 }

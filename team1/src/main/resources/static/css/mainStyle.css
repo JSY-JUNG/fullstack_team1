@@ -41,9 +41,6 @@ input::-webkit-search-results-decoration {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-body {
     font-family: "Noto Sans KR", serif;
 }
 
@@ -70,69 +67,21 @@ a {
     margin: auto;
 }
 
-/* Header */
-.header {
-    background-color: transparent;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 75px;
-    line-height: 75px;
-    padding: 0 1rem;
-    color: var(--color-primary);
-    z-index: 1;
-    transition: all 300ms ease;
-}
 
-.header--dark {
-    background-color: black;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
+.review-blur {
+    z-index: 999999;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: rgb(255, 98, 7);
 
-.header a,
-.header i, .header span {
-    color: white;
-}
+    filter: blur(5px) !important;
+    -webkit-filter: blur(5px);
 
-.header__container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
-
-.header__menu {
-    display: flex;
-    display: none;
-}
-
-.header__menu__item a {
-    padding: 9px 20px;
-    font-size: 15px;
-}
-
-.header__bar {
-    font-size: 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.header__left{
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.header__right{
-    display: flex;
-    align-items: center;
-}
-.nav-item{
-    margin-left:10px;
-}
-
 /* MainBanner */
 #mainBanner {
     position: relative;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -140,6 +89,7 @@ a {
     background-size: cover;
     background-position: center center;
     height: 80vh;
+    /*height: 95vh; 밑에 텍스트 안보이도록 메인배너 넓히는게 좋을것 같습니다 : hyun*/
     padding-top: 75px;
     margin-bottom: 100px;
     color: var(--color-primary);
@@ -190,6 +140,7 @@ a {
     align-items: center;
     padding: 0.2rem;
     overflow: hidden;
+    /*width: 650px; hyun*/
     width: 600px;
     height: auto;
     padding: 0rem;
@@ -336,6 +287,13 @@ input::placeholder {
     line-height: 80px;
 }
 
+/*.hotSpot__des__container {*/
+/*    display: flex;*/
+/*    margin-top: 20px;*/
+/*    font-size: 23px;*/
+/*    line-height: 60px;*/
+/*} hyun */
+
 .hotSpot__des__key {
     width: 202px;
 }
@@ -390,11 +348,25 @@ input::placeholder {
     z-index: 2;
 }
 
+/*.hotPlace__rank {*/
+/*    position: absolute;*/
+/*    top: 5px;*/
+/*    right: 5px;*/
+/*    padding: 4px 20px;*/
+/*    color: #ffffff;*/
+/*    background-color: #188FFF;*/
+/*    border-radius: 5px;*/
+/*    font-size: 20px;*/
+/*    font-weight: 500;*/
+/*    z-index: 2;*/
+/*} hyun*/
+
 .hotPlace__btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     color: var(--coloer-point);
+    /*color: #000000; hyun*/
     border: none;
     background-color: transparent;
     padding: 100px 20px;
@@ -447,11 +419,69 @@ input::placeholder {
     color: black;
 }
 .select input[type=radio]:checked+label{
-
     border-bottom: 2px solid black;
     color: black;
+
 }
 
+/* Header.html */
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 75px;
+    line-height: 75px;
+    padding: 0 1rem;
+    z-index: 99999999999999;
+}
+.header-inner {
+    width: 1440px;
+    margin: 0 auto;
+}
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    align-items: center
+}
+a {
+    text-decoration: none;
+    color: #000000;
+}
+.menu_bg {
+    width: 50%;
+    height: 2000px;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    overflow: hidden;
+    display: none;
+}
+
+.menu {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 46%;
+    height: 100%;
+    background-color: #ffffff;
+    box-shadow: -15px 0px 10px -2px rgba(0, 0, 0, 0.1);
+}
+.menu > div {
+    padding: 7%;
+}
+
+.dropdown-item {
+    font-size: 30px;
+    font-weight: bold;
+}
+.menu-active {
+    color: #0099ff;
+}
+.header-color-change {
+    color: #ffffff;
+}
 .filled-star {
     color: gold; /* 채워진 별은 금색 */
 }

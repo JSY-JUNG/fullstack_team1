@@ -26,4 +26,10 @@ public class ScriptUtil {
         out.println("<script>alert('" + alertText + "'); location.href='" + page + "'</script>");
         out.flush();
     }
+    public static void alertAndBack(HttpServletResponse res, String alertText) throws IOException {
+        init(res);
+        PrintWriter out = res.getWriter();
+        out.println("<script>alert('" + alertText + "'); history.back(); </script>");
+        out.flush();
+    }
 }

@@ -3,7 +3,7 @@ $(document).ready(function () {
     var didScroll;
     var lastScrollTop = 0;
     var delta = 5; // 동작의 구현이 시작되는 위치
-    var navbarHeight = $('.header').outerHeight(); // 영향을 받을 요소를 선택
+    var navbarHeight = $('.header-inner').outerHeight(); // 영향을 받을 요소를 선택
 
     $(window).scroll(function(event){
         didScroll = true;
@@ -28,11 +28,11 @@ $(document).ready(function () {
         // 헤더의 높이보다 더 스크롤되었는지 확인하고 스크롤의 방향이 위인지 아래인지를 확인한다.
         if (st > lastScrollTop && st > navbarHeight){
             // 스크롤 내릴때
-            $('.header').addClass('d-none');
+            $('.header-inner').addClass('d-none');
         } else {
             // 스크롤 올릴때
             if(st + $(window).height() < $(document).height()) {
-                $('.header').removeClass('d-none');
+                $('.header-inner').removeClass('d-none');
             }
         }
         // lastScrollTop 에 현재 스크롤위치를 지정한다.
@@ -59,6 +59,12 @@ $(document).ready(function () {
         $(".category--selected").removeClass("category--selected");
         $(this).addClass("category--selected");
     });
+
+    // 메뉴 클릭시 컬러변경
+    $(".dropdown-item").click(function () {
+        $(".dropdown-item").removeClass("menu-active"); // 모든 메뉴의 색상 초기화
+        $(this).addClass("menu-active"); // 클릭한 메뉴만 색상 변경
+    });
 });
 // hotplace 에 슬라이드 적용 js
 let index = 0;
@@ -80,4 +86,26 @@ function moveSlide(step) {
 
     lastDirection = step;
     slider.style.transform = `translateX(${-index * cardWidth}px)`;
+}
+// header 메뉴 슬라이드 설정
+var giMenuDuration = 700;
+
+// 전체 메뉴를 오른쪽으로 슬라이드하여서 보여준다.
+function ShowMenu() {
+    $(".menu_bg").css({ display: "block" });
+    $(".menu").css({ right: "-100%" });
+    $(".menu").animate({ right: "0px" }, { duration: giMenuDuration });
+}
+
+// 전체 메뉴를 왼쪽으로 슬라이드하여서 닫는다.
+function HideMenu() {
+    $(".menu").animate(
+        { right: "-100%" },
+        {
+            duration: giMenuDuration,
+            complete: function () {
+                $(".menu_bg").css({ display: "none" });
+            },
+        }
+    );
 }

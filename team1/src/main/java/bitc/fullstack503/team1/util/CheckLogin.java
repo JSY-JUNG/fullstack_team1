@@ -12,11 +12,11 @@ public class CheckLogin implements HandlerInterceptor {
         HttpSession session = req.getSession();
         if(session.getAttribute("userId") == null){
             System.out.println(" 비 로그인 상태 ");
-            ScriptUtil.alertAndPage(res,"로그인이 필요합니다.","/login");
+            ScriptUtil.alertAndPage(res,"로그인이 필요합니다.","/khamro");
             return false;
         }else{
             System.out.println(" 로그인 상태 ");
-            session.setMaxInactiveInterval(60);
+//            session.setMaxInactiveInterval(60*60*2);
             return true;
         }
     }

@@ -38,14 +38,18 @@ public class LoginController {
 
     //  로그인 페이지
     @GetMapping("/khamro")
-    public String login() {
+    public String login(HttpServletRequest req) {
+        String referer = req.getHeader("referer");
+        if (referer != null && !referer.contains("khamro")) {
+            req.getSession().setAttribute("prePage", referer);
+        }
         return "main/khamro/LoginPage";
     }
 
 //    로그인 process 페이지
     @RequestMapping("/khamro/loginProcess")
     public void loginProcess(@RequestParam ("userId") String userId, @RequestParam("userPw1") String userPw1, HttpServletRequest req, HttpServletResponse res) throws Exception {
-
+        String prePage = (String) req.getSession().getAttribute("prePage");
         boolean result = registerService.isUserInfo(userId, userPw1);
 
 //        입력한 아이디와 비밀번호가 데이터베이스에 있으면 getUserInfo() 메소드를 이요하여 가져옴
@@ -55,8 +59,12 @@ public class LoginController {
             session.setAttribute("userId", login.getUserId());
             session.setAttribute("userName", login.getUserName());
 //            session.setAttribute("userPw1", login.getUserPw1());
-            session.setMaxInactiveInterval(60);
-            ScriptUtil.alertAndPage(res,"로그인 성공","/");
+            session.setMaxInactiveInterval(60*60*2);
+            if(prePage != null) {
+                ScriptUtil.alertAndPage(res,"로그인 성공",prePage);
+            }else{
+                ScriptUtil.alertAndPage(res,"로그인 성공","/");
+            }
         }
 //        입력한 아이디와 비밀번호가 데이터베이스에 없으면
         else {
@@ -72,7 +80,20 @@ public class LoginController {
         session.removeAttribute("userName");
 
         session.invalidate();
-        ScriptUtil.alertAndPage(res,"로그아웃 되었습니다.","/");
+        String referer = req.getHeader("referer");
+        if (referer != null && !referer.contains("khamro/logout")) {
+            req.getSession().setAttribute("prePage", referer);
+        }
+        String prePage = (String) req.getSession().getAttribute("prePage");
+        System.out.println(prePage);
+        if (prePage != null) {
+            // 이전 페이지로 리디렉션
+            ScriptUtil.alertAndPage(res, "로그아웃 되었습니다.", prePage);
+        } else {
+            // 이전 페이지 정보가 없으면 홈 페이지로 리디렉션
+            ScriptUtil.alertAndPage(res, "로그아웃 되었습니다.", "/");
+        }
+
     }
 
 //    ID/PW 찾기 페이지

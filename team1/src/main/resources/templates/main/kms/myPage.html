@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>부산왔냐</title>
-    <!-- Favicon -->
-<!--    <link rel="shortcut icon" href="images/favicon.ico" type="" />-->
-    <!-- Google Fonts -->
+    <meta charset="UTF-8">
+    <title>마이페이지</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -34,23 +30,26 @@
             crossorigin="anonymous"
     ></script>
     <!-- css -->
-    <link rel="stylesheet" href="/css/mainStyle.css" />
+    <link rel="stylesheet" href="/css/myPage.css" />
+    <link rel="stylesheet" href="/css/Header.css" />
+    <!--  jquery  -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script th:src="@{/js/mainPage.js}"></script>
 </head>
-<body style="overflow-x: hidden;">
+<body>
 <!-- Header -->
-    <header th:replace="~{/layout/Header :: header}"></header>
-<!-- mainPage -->
+<header th:replace="~{/layout/Header :: header}"></header>
+
+<!-- myPage -->
 <main>
-    <!-- mainBanner -->
-    <section th:replace="~{/main/kms/mainBanner :: mainBanner}"></section>
+    <!-- profile -->
+    <section th:replace="~{/main/kms/myPageSection/profile :: profile}"></section>
 
-    <!-- hotSpot -->
-    <section th:replace="~{/main/kms/hotSpot :: hotSpot}"></section>
+    <!-- favorites -->
+    <section th:replace="~{/main/kms/myPageSection/favorites :: favorites}"></section>
 
-    <!-- hotPlace -->
-    <section th:replace="~{/main/kms/hotPlace :: hotPlace}"></section>
+    <!-- myReview -->
+    <section th:replace="~{/main/kms/myPageSection/myReview :: myReview}"></section>
 </main>
 <!-- Footer -->
 <footer id="contact" th:replace="~{/layout/Footer :: footer}"></footer>
