@@ -46,7 +46,7 @@
     <!--  관리자가 모든 유저가 작성한 리뷰 목록 가져오기  -->
     <select id="selectReviewByManager" resultType="bitc.fullstack503.team1.dto.mysql.MyReviewBoardDTO">
         SELECT
-        a.review_idx, a.user_id, a.UC_SEQ, a.UC_SEQ2, a.contents, a.scope, update_date,
+        a.review_idx, a.user_id, a.UC_SEQ, a.UC_SEQ2, a.contents, a.scope, DATE_FORMAT(a.update_date, '%Y-%m-%d') as update_date,
         DATE_FORMAT(a.create_date, '%Y-%m-%d') as create_date, substring(b.image_url,24,100) as image_url
         FROM
         review_board a
@@ -57,7 +57,7 @@
         where
         deleted_yn = 'N'
         ORDER BY
-        create_date ASC;
+        create_date ASC
     </select>
 
     <!--  로그인 한 유저가 작성한 리뷰 목록 가져오기  -->
@@ -78,7 +78,7 @@
         create_date ASC
     </select>
 
-<!--  로그인 한 유저가 작성한 리뷰 세부페이지  -->
+    <!--  로그인 한 유저가 작성한 리뷰 세부페이지  -->
     <select id="selectReviewDetail" parameterType="map" resultType="bitc.fullstack503.team1.dto.mysql.MyReviewBoardDTO">
         SELECT
         a.review_idx, a.user_id, a.UC_SEQ, a.UC_SEQ2, a.contents, a.scope,
@@ -97,33 +97,33 @@
         create_date ASC
     </select>
 
-<!--    관리자 리뷰 상세페이지 정보 -->
+    <!--    관리자 리뷰 상세페이지 정보 -->
     <select id="selectReviewDetailGradeA" parameterType="int" resultType="bitc.fullstack503.team1.dto.mysql.MyReviewBoardDTO">
         SELECT
-            a.review_idx, a.user_id, a.UC_SEQ, a.UC_SEQ2, a.contents, a.scope,
-            DATE_FORMAT(a.create_date, '%Y-%m-%d') as create_date, substring(b.image_url,24,100) as image_url
+        a.review_idx, a.user_id, a.UC_SEQ, a.UC_SEQ2, a.contents, a.scope,
+        DATE_FORMAT(a.create_date, '%Y-%m-%d') as create_date, substring(b.image_url,24,100) as image_url
         FROM
-            review_board a
+        review_board a
         LEFT JOIN
-            review_image b
+        review_image b
         ON
-            a.review_idx = b.review_idx
+        a.review_idx = b.review_idx
         WHERE
-            a.review_idx = #{reviewIdx}
+        a.review_idx = #{reviewIdx}
         AND
-            deleted_yn = 'N'
+        deleted_yn = 'N'
         ORDER BY
-            create_date ASC
+        create_date ASC
     </select>
 
-<!--    리뷰 업데이트 -->
+    <!--    리뷰 업데이트 -->
     <update id="updateReview" parameterType="bitc.fullstack503.team1.dto.mysql.MyReviewBoardDTO">
         UPDATE review_board
         SET contents = #{contents}, update_date = now()
         WHERE review_idx = #{reviewIdx}
     </update>
 
-<!--    리뷰 삭제 -->
+    <!--    리뷰 삭제 -->
     <update id="deleteReview" parameterType="int">
         UPDATE review_board
         SET deleted_yn = 'Y'
@@ -131,9 +131,42 @@
     </update>
 
 
-<!--    유저 grade 찾기 -->
+    <!--    유저 grade 찾기 -->
     <select id="selectUserGrade" resultType="bitc.fullstack503.team1.dto.mysql.MyUserDTO">
         SELECT * FROM USER
         WHERE user_id = #{userId}
     </select>
+
+    <!--  관리자가 모든 유저정보 목록 가져오기  -->
+    <select id="selectUserByManager" resultType="bitc.fullstack503.team1.dto.mysql.MyUserDTO">
+        SELECT user_id, user_pw, user_name, user_email, user_phone,
+            DATE_FORMAT(create_date, '%Y-%m-%d') as create_date,
+            DATE_FORMAT(update_date, '%Y-%m-%d') as update_date
+        FROM user
+    </select>
+
+    <!--  관리자가 특정 유저 상세정보 가져오기  -->
+    <select id="selectUserDetail" parameterType="String" resultType="bitc.fullstack503.team1.dto.mysql.MyUserDTO">
+        SELECT
+        *
+        FROM user
+        WHERE
+        user_id = #{userId}
+        ORDER BY
+        create_date ASC
+    </select>
+
+    <!--    유저 업데이트 -->
+    <update id="updateUser" parameterType="bitc.fullstack503.team1.dto.mysql.MyUserDTO">
+        UPDATE user
+        SET update_date = now(), user_name = #{userName}, user_email = #{userEmail}, user_phone = #{userPhone}, user_pw = #{userPw}, deleted_yn = #{deletedYn}
+        WHERE user_id = #{userId}
+    </update>
+
+    <!--    유저 삭제 -->
+    <update id="deleteUser" parameterType="String">
+        UPDATE user
+        SET deleted_yn = 'Y'
+        WHERE user_id = #{userId}
+    </update>
 </mapper>

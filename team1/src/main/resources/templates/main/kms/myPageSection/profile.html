@@ -15,7 +15,7 @@
 
 </section>
 <!-- profile -->
-<section class="mb-4 container" th:fragment="profile">
+<section class="mb-4 container" th:fragment="profile" style="margin-bottom: 35px;">
     <div class="section-inner">
         <h2 th:if="${profile.grade == 'A'}">관리자 프로필</h2>
         <h2 th:unless="${profile.grade == 'A'}">프로필</h2>
@@ -41,21 +41,21 @@
                         </div>
                         <div class="mt-1">
                             <p style="font-size: small;" class="mb-1 ps-1">아이디</p>
-                            <div class="border border-2 rounded-2 bg-white align-content-center" style="height: 50px;"><p th:text="${profile.userId}" style="margin-left: 10px;">ID</p></div>
+                            <div class="border border-2 rounded-2 bg-white align-content-center" style="height: 50px;"><p th:text="${profile.userId}" style="margin-left: 10px; margin-bottom:0;">ID</p></div>
                         </div>
                         <div class="mt-1">
                             <p style="font-size: small;" class="mb-1 ps-1">이름</p>
-                            <div class="border border-2 rounded-2 bg-white align-content-center" style="height: 50px;"><p th:text="${profile.userName}" style="margin-left: 10px;">홍길동</p>
+                            <div class="border border-2 rounded-2 bg-white align-content-center" style="height: 50px;"><p th:text="${profile.userName}" style="margin-left: 10px; margin-bottom:0;">홍길동</p>
                             </div>
                         </div>
                         <div class="mt-2">
                             <p style="font-size: small;" class="mb-1 ps-1">연락처</p>
-                            <div class="border border-2 rounded-2 bg-white align-content-center" style="height: 50px;"><p th:text="${profile.userPhone}" style="margin-left: 10px;">1234</p>
+                            <div class="border border-2 rounded-2 bg-white align-content-center" style="height: 50px;"><p th:text="${profile.userPhone}" style="margin-left: 10px; margin-bottom:0;">1234</p>
                             </div>
                         </div>
                         <div class="mt-2">
                             <p style="font-size: small;" class="mb-1 ps-1">이메일</p>
-                            <div class="border border-2 rounded-2 bg-white align-content-center" style="height: 50px;"><p th:text="${profile.userEmail}" style="margin-left: 10px;">
+                            <div class="border border-2 rounded-2 bg-white align-content-center" style="height: 50px;"><p th:text="${profile.userEmail}" style="margin-left: 10px; margin-bottom:0;">
                                 nav.com</p></div>
                         </div>
                     </div>

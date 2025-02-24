@@ -16,7 +16,12 @@ $(document).ready(function(){
         frm.action = "/khamro/loginProcess"
         frm.submit();
     });
-
+// keydown 엔터 누를 시
+    $("#Pw").on('keydown',function(e){
+        if(e.keyCode == 13){
+            $("#btn-login").click();
+        }
+    })
     // 아이디 중복 확인
     $("#btn-check").on("click", function () {
         var uId = $("#user-id").val();

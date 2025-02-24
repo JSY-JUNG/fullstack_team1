@@ -27,9 +27,17 @@ public interface MyPageMapper {
 
     List<MyPlaceDTO> selectMyPlace(String userId) throws Exception;
 
-    List<MyReviewBoardDTO> selectReviewByManager() throws Exception;
+    Page<MyReviewBoardDTO> selectReviewByManager() throws Exception;
 
     MyUserDTO selectUserGrade(String userId) throws Exception;
 
     MyReviewBoardDTO selectReviewDetailGradeA(int reviewIdx) throws Exception;
+
+    Page<MyUserDTO> selectUserByManager()  throws Exception;
+
+    MyUserDTO selectUserDetail(String userId) throws Exception;
+
+    void updateUser(MyUserDTO userId);
+
+    void deleteUser(String userId);
 }

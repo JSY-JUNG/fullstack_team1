@@ -63,9 +63,36 @@ public class MyPageServiceImpl implements MyPageService {
     }
 
     @Override
-    public List<MyReviewBoardDTO> selectReviewByManager() throws Exception {
+    public Page<MyReviewBoardDTO> selectReviewByManager(int pageNum) throws Exception {
+
+        PageHelper.startPage(pageNum, 6);
 
         return myPageMapper.selectReviewByManager();
+
+//        return myPageMapper.selectReviewByManager();
+    }
+
+    @Override
+    public Page<MyUserDTO> selectUserByManager(int pageNum) throws Exception {
+
+        PageHelper.startPage(pageNum, 6);
+
+        return myPageMapper.selectUserByManager();
+    }
+
+    @Override
+    public MyUserDTO selectUserDetail(String userId) throws Exception {
+        return myPageMapper.selectUserDetail(userId);
+    }
+
+    @Override
+    public void updateUser(MyUserDTO userId) {
+        myPageMapper.updateUser(userId);
+    }
+
+    @Override
+    public void deleteUser(String userId) {
+        myPageMapper.deleteUser(userId);
     }
 
 

@@ -25,5 +25,13 @@ public interface MyPageService {
 
     List<MyPlaceDTO> selectMyPlace(String userId) throws Exception;
 
-    List<MyReviewBoardDTO> selectReviewByManager() throws Exception;
+    Page<MyReviewBoardDTO> selectReviewByManager(int pageNum) throws Exception;
+
+    Page<MyUserDTO> selectUserByManager(int pageNum) throws Exception;
+
+    MyUserDTO selectUserDetail(String userId) throws Exception;
+
+    void updateUser(MyUserDTO userId);
+
+    void deleteUser(String userId);
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 public class MyUserDTO {
     private String userId;
     private String userPw1;
+    private String userPw;
     private String userName;
     private String userEmail;
     private String userPhone;
@@ -13,4 +14,5 @@ public class MyUserDTO {
     private String createDate;
     private String updateDate;
     private String grade;
+    private String deletedYn;
 }
