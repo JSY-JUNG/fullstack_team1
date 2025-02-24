@@ -22,12 +22,16 @@
 <body>
 <section th:fragment="section1" class="section1">
     <div class="section-inner thumbnail-area">
-        <div class="share-btn">
-            <a href="#" id="btn-fv"><span class="star-icon" style="font-size: 20px" th:classappend="${result == 1 ? 'filled-star' : 'empty-star'}">♥</span></a>
-            <span style="color: lightgray; font-size: 20px "><i class="fa-solid fa-share-from-square"></i></span>
+        <div class="d-flex" style="justify-content: center">
+            <div>
+                <input type="hidden" th:value="${Detail.UCSEQ}" id="ucSeq" />
+                <h1 th:text="${Detail.MAINTITLE}">이름</h1>
+            </div>
+            <div class="share-btn">
+                <a href="#" id="btn-fv"><span class="star-icon" style="font-size: 20px" th:classappend="${result == 1 ? 'filled-heart' : 'empty-star'}">♥</span></a>
+            </div>
         </div>
-        <input type="hidden" th:value="${Detail.UCSEQ}" id="ucSeq" />
-            <h1 th:text="${Detail.MAINTITLE}">이름</h1>
+
             <!-- 명소 썸네일 상세 이미지 -->
            <div class="thumbnail-main-img">
                <img class="thumbnail-main-img" src="#" alt="#" th:src="@{|${Detail.MAINIMGNORMAL}|}">
@@ -47,10 +51,10 @@
                 var crt = $(".star-icon").attr("class");
 
                 if(crt === "star-icon empty-star"){
-                    $(".star-icon").removeClass("empty-star").addClass("filled-star");
+                    $(".star-icon").removeClass("empty-star").addClass("filled-heart");
                     updateBookmark(true);
-                }else if (crt === "star-icon filled-star"){
-                    $(".star-icon").removeClass("filled-star").addClass("empty-star");
+                }else if (crt === "star-icon filled-heart"){
+                    $(".star-icon").removeClass("filled-heart").addClass("empty-star");
                     updateBookmark(false);
                 }
             });

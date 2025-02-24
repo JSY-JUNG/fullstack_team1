@@ -14,10 +14,9 @@
 
 <!-- hotSpot -->
 <section id="hotSpot" class="max-container" th:fragment="hotSpot">
-    <h1 class="hotSop__title">
-        <i class="hotSop__title__icon fa-solid fa-trophy"></i>
-        부산 인기 명소&맛집 랭킹
-    </h1>
+    <h2 class="hotSop__title">
+        부산 랜덤 <span style="font-weight: bold;">인기 명소 🏆</span>
+    </h2>
     <div class="hotSpot__container">
         <div class="hotSpot__image">
             <a href="#">
@@ -28,31 +27,26 @@
             <div class="d-flex align-items-center">
                 <h2 class="hotSpot__des__title" th:text="${spotRank.MAINTITLE}">수영사적공원</h2>
                 <div class="flex-grow-1" style="padding-left: 30px; padding-bottom: 14px; font-size: 34px;">
-                <span th:each="i : ${#numbers.sequence(1, 5)}">
-                    <span th:class="${i <= (spotRank.SCOPEAVG != null ? spotRank.SCOPEAVG : 0) ? 'filled-star' : 'empty-star'}">
-                        ★
-                    </span>
-                </span>
                 </div>
             </div>
+            <div class="hotSpot__des__container mt-4">
+                <div>
+                    <ul class="hotSpot_info">
+                        <li>
+                            <span class="hotSpot__des__key">🔹 별점</span><span th:each="i : ${#numbers.sequence(1, 5)}">
+                            <span th:class="${i <= (spotRank.SCOPEAVG != null ? spotRank.SCOPEAVG : 0) ? 'filled-star' : 'empty-star'}">
+                        ★
+                    </span>
+                        </span>
 
-            <div class="hotSpot__des__container">
-                <div class="hotSpot__des__key">
-                    <ul>
-                        <li>주소</li>
-                        <li>이용시간</li>
-                        <li>휴무일</li>
-                        <li>이용요금</li>
+                        </li>
+                        <li><span class="hotSpot__des__key">🔹 주소</span><span class="hotSpot__des__value" th:text="${spotRank.ADDR1}">부산광역시 수영구 수영성로 43</span></li>
+                        <li><span class="hotSpot__des__key">🔹 이용시간</span><span class="hotSpot__des__value" th:text="${#strings.isEmpty(spotRank.USAGEDAYWEEKANDTIME) ? '제한없음' : spotRank.USAGEDAYWEEKANDTIME}"></span></li>
+                        <li><span class="hotSpot__des__key">🔹 휴무일</span><span class="hotSpot__des__value" th:text="${#strings.isEmpty(spotRank.HLDYINFO) ? '연중무휴' : spotRank.HLDYINFO}">월요일</span></li>
+                        <li><span class="hotSpot__des__key">🔹 이용요금</span><span class="hotSpot__des__value" th:text="${#strings.isEmpty(spotRank.USAGEAMOUNT) ? '무료' : spotRank.USAGEAMOUNT}">18,000원</span></li>
                     </ul>
                 </div>
-                <div class="hotSpot__des__value">
-                    <ul>
-                        <li th:text="${spotRank.ADDR1}">부산광역시 수영구 수영성로 43</li>
-                        <li th:text="${#strings.isEmpty(spotRank.USAGEDAYWEEKANDTIME) ? '제한없음' : spotRank.USAGEDAYWEEKANDTIME}">10:00 ~ 16:00</li>
-                        <li th:text="${#strings.isEmpty(spotRank.HLDYINFO) ? '연중무휴' : spotRank.HLDYINFO}">월요일</li>
-                        <li th:text="${#strings.isEmpty(spotRank.USAGEAMOUNT) ? '무료' : spotRank.USAGEAMOUNT}">18,000원</li>
-                    </ul>
-                </div>
+
             </div>
         </div>
     </div>

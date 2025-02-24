@@ -13,12 +13,12 @@
 <body>
 
 <!-- hotPlace -->
-<section id="hotPlace" class="max-container" th:fragment="hotPlace">
+<section id="hotPlace" class=" pt-3" th:fragment="hotPlace">
+    <h2 class="hot_title pb-3" style="text-align: center;"><span th:text="${spotRank.MAINTITLE}">수영사적공원</span> 근처 <span style=" font-weight: bold">랭킹 TOP 맛집</span> 🚀</h2>
     <div class="slider-container">
-        <button class="hotPlace__btn prev" onclick="moveSlide(-1)">&#10094;</button>
         <div class="slider-wrapper">
             <div class="slider">
-                <div class="card"  th:if="${#lists.size(placeRankList)} > 0" th:each="item : ${placeRankList}">
+                <div class="card" th:if="${#lists.size(placeRankList)} > 0" th:each="item : ${placeRankList}">
                     <a href="#"
                     ><img class="card__img" src="/img/hotPlace01.png" alt="Top1" th:src="${item.MAINIMGTHUMB}"/><span
                             class="hotPlace__rank"
@@ -29,8 +29,9 @@
                 </div>
             </div>
         </div>
-        <button class="hotPlace__btn next" onclick="moveSlide(1)">&#10095;</button>
     </div>
+    <button class="hotPlace__btn next" onclick="moveSlide(1)">&#10095;</button>
+    <button class="hotPlace__btn prev" onclick="moveSlide(-1)">&#10094;</button>
 </section>
 
 </body>

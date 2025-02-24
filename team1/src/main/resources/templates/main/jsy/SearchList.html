@@ -32,7 +32,7 @@
 <body>
     <div th:replace="~{/layout/Header :: header}"></div>
     <main class="container">
-        <div class="d-flex" style="gap: 100px;">
+        <div class="d-flex" style="gap: 160px;">
             <aside>
                 <div class="pb-3 pt-3">
                     <div class="d-flex justify-content-between align-items-center">
@@ -74,7 +74,7 @@
             </aside>
             <section class="flex-grow-1">
                 <!-- 상품 목록 -->
-                <div id="content-area">
+                <div id="content-area" class="mb-5">
                     <div class="searchlist">
                         <h1>
                             <span class="pe-4" th:text="|&apos;${#strings.isEmpty(Keyword) ? '전체' : Keyword}&apos;|">123</span>

@@ -88,7 +88,7 @@ a {
     background: url(/img/mainBanner01.jpg);
     background-size: cover;
     background-position: center center;
-    height: 80vh;
+    height: 95vh;
     /*height: 95vh; 밑에 텍스트 안보이도록 메인배너 넓히는게 좋을것 같습니다 : hyun*/
     padding-top: 75px;
     margin-bottom: 100px;
@@ -135,19 +135,23 @@ a {
     align-items: center;
 }
 
+.mainBannerSearch {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .mainBanner__search {
-    /*display: flex;*/
     align-items: center;
     padding: 0.2rem;
     overflow: hidden;
-    /*width: 650px; hyun*/
-    width: 600px;
+    width: 650px;
     height: auto;
     padding: 0rem;
     background: white;
-    /* background: rgba(255, 255, 255, 0.3); */
     border: none;
-    /*border-radius: 50px;*/
+    border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
@@ -228,23 +232,24 @@ input::placeholder {
     display: flex;
     justify-content: center;
     gap: 40px;
-    margin-bottom: 54px;
+    margin-bottom: 10px;
 }
 
 .hotSpot__image {
-    width: 560px;
-    height: 560px;
+    width: 480px;
+    height: 480px;
 }
 
 .hotSpot__image_img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px 0px rgb(0,0,0,0.1);
 }
 
 .hotSop__title {
     text-align: center;
-    font-size: 42px;
     margin-bottom: 35px;
 }
 
@@ -253,25 +258,13 @@ input::placeholder {
     color: #ffb900;
 }
 
-.hotSpot__des__value {
-    width: 683px;
-}
+
 
 .hotSpot__des__title {
     position: relative;
-    font-size: 34px;
+    font-size: 32px;
     font-weight: normal;
-    padding-bottom: 14px;
-}
-
-.hotSpot__des__title::after {
-    content: "";
-    position: absolute;
-    left: 0px;
-    bottom: -2px;
-    height: 2px;
-    width: 635px;
-    background: #bbbbbb;
+    padding-bottom: 23px;
 }
 
 .hotSpot__des {
@@ -281,31 +274,37 @@ input::placeholder {
 }
 
 .hotSpot__des__container {
-    display: flex;
-    margin-top: 50px;
-    font-size: 24px;
-    line-height: 80px;
+    margin-top: 5px;
+    font-size: 20px;
+    color: #666666;
 }
 
-/*.hotSpot__des__container {*/
-/*    display: flex;*/
-/*    margin-top: 20px;*/
-/*    font-size: 23px;*/
-/*    line-height: 60px;*/
-/*} hyun */
+.hotSpot_info li{
+    display: flex;
+    padding-bottom: 30px;
+}
 
 .hotSpot__des__key {
-    width: 202px;
+    width: 180px;
+    font-weight: 600;
+    color: #444444;
 }
 
 .hotSpot__des__value {
     color: #666666;
+    font-size: 19px;
+}
+.hotSpot_span {
+    display: block;
+    padding-bottom: 20px;
+
+
 }
 
 /* hotPlace */
 .slider-container {
     position: relative;
-    width: 80%;
+    width: 73%;
     margin: auto;
     overflow: hidden;
     margin-bottom: 104px;
@@ -314,17 +313,17 @@ input::placeholder {
     display: flex;
     transition: transform 0.3s ease-in-out;
     width: 80%;
-    height: 220px;
+    height: 348px;
 }
 .card {
     position: relative;
-    min-width: 30%;
-    height: 210px;
+    min-width: 35%;
+    height: 250px;
     margin: 0 10px;
     border-radius: 5px;
     overflow: hidden;
     object-fit: cover;
-    box-shadow: 4.0px 8.0px 8.0px rgba(0,0,0,0.38);
+    box-shadow: 4.0px 8.0px 8.0px rgba(0,0,0,0.1);
 }
 .card:hover .card__img {
     transform: scale(1.05); /* 이미지 확대 */
@@ -344,35 +343,36 @@ input::placeholder {
     padding: 10px;
     color: white;
     font-size: 36px;
-    font-weight: bolder;
+    font-weight: bold;
     z-index: 2;
 }
 
-/*.hotPlace__rank {*/
-/*    position: absolute;*/
-/*    top: 5px;*/
-/*    right: 5px;*/
-/*    padding: 4px 20px;*/
-/*    color: #ffffff;*/
-/*    background-color: #188FFF;*/
-/*    border-radius: 5px;*/
-/*    font-size: 20px;*/
-/*    font-weight: 500;*/
-/*    z-index: 2;*/
-/*} hyun*/
-
+.hotPlace__rank {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 4px 20px;
+    color: #ffffff;
+    background-color: #188FFF;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 500;
+    z-index: 2;
+}
+#hotPlace {
+    position: relative;
+}
 .hotPlace__btn {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--coloer-point);
-    /*color: #000000; hyun*/
+    top: 32%;
+    transform: translateY(-32%);
+    color: #bbbbbb;
     border: none;
     background-color: transparent;
     padding: 100px 20px;
     z-index: 10;
     cursor: pointer;
-    font-size: 5rem;
+    font-size: 3rem;
 }
 
 .hotPlace__btn:hover {
@@ -380,10 +380,10 @@ input::placeholder {
     transition: all 300ms ease;
 }
 .prev {
-    left: 0;
+    left: 10%;
 }
 .next {
-    right: 0;
+    right: 10%;
 }
 
 /* Footer */
@@ -419,8 +419,9 @@ input::placeholder {
     color: black;
 }
 .select input[type=radio]:checked+label{
-    border-bottom: 2px solid black;
-    color: black;
+    border-bottom: 2px solid #188FFF;
+    color: #188FFF;
+    font-weight: bold;
 
 }
 
