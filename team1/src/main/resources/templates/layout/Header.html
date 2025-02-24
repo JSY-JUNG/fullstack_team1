@@ -15,41 +15,21 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script th:src="@{/js/mainPage.js}"></script>
-
 </head>
 <body>
 <header th:fragment="header">
     <div class="header-inner">
         <div class="header-container">
             <div>
-                <a
-                        class="header__logo__a header-color-change"
-                        href="/"
-                        style="font-size: 1.8rem; font-weight: bolder"
-                >부산왔나</a
-                >
+                <a class="header__logo__a header-color-change" href="/" style="font-size: 1.8rem; font-weight: bolder">
+                    <img src="#" alt="#" id="logo">
+                </a>
             </div>
 
             <div class="header-container">
-                <div class="login-bar">
-                    <a
-                            href="#"
-                            th:href="@{/khamro}"
-                            class="align-items-center header-color-change"
-                            th:if="${session.userId == null}"
-                    ><span style="font-size: 20px;">LOG IN</span></a
-                    >
-                    <a
-                            href="#"
-                            th:href="@{/khamro/logout}"
-                            class="align-items-center header-color-change"
-                            th:unless="${session.userId == null}"
-                    ><span style="font-size: 20px;" >LOG OUT</span></a
-                    >
-                </div>
                 <div>
                     <div onclick="ShowMenu()" style="padding-left: 30px" class="header-color-change">
-                        <i class="fa-solid fa-bars" style="font-size: 30px; cursor: pointer"></i>
+                        <i class="fa-solid fa-bars" style="font-size: 33px; cursor: pointer"></i>
                     </div>
                     <div class="menu_bg">
                         <div class="menu">
@@ -61,23 +41,36 @@
                                 <i class="fa-solid fa-xmark" style="font-size: 30px"></i>
                             </div>
                             <div>
+                                <a class="dropdown-item" href="#" th:href="@{/knh}"
+                                ><span><a
+                                        href="#"
+                                        th:href="@{/khamro}"
+                                        class="align-items-center"
+                                        th:if="${session.userId == null}"
+                                ><span style="font-size: 30px; font-weight: bold;">LOG IN</span></a
+                                >
+                    <a
+                            href="#"
+                            th:href="@{/khamro/logout}"
+                            class="align-items-center"
+                            th:unless="${session.userId == null}"
+                    ><span style="font-size: 30px; font-weight: bold;" >LOG OUT</span></a
+                    ></span></a
+                                >
+                            </div>
+                            <div>
                                 <a class="dropdown-item" href="#" th:href="@{/MyPage}"
                                 ><span class="text">마이페이지</span></a
                                 >
                             </div>
                             <div>
-                                <a class="dropdown-item" href="#" th:href="@{/knh}"
-                                ><span>점메추</span></a
+                                <a class="dropdown-item" href="#" th:href="@{/SearchList?category=A&Keyword=}"
+                                ><span>명소 검색하기</span></a
                                 >
                             </div>
                             <div>
-                                <a class="dropdown-item" href="#" th:href="@{/khamro}"
-                                ><span>검색하기</span></a
-                                >
-                            </div>
-                            <div>
-                                <a class="dropdown-item" href="#" th:href="@{/njg}"
-                                ><span>메뉴</span></a
+                                <a class="dropdown-item" href="#" th:href="@{/SearchList?category=B&Keyword=}"
+                                ><span>맛집 검색하기</span></a
                                 >
                             </div>
                         </div>
@@ -87,6 +80,19 @@
         </div>
     </div>
     <input type="hidden" th:value="${session.userId}" id="userId" />
+    <script>
+        $(document).ready(function () {
+            var currentUrl = window.location.pathname;
+            var logoUrl;
+            if (currentUrl === '/') {
+                logoUrl = '/img/mainlogo.png';
+            }else{
+                logoUrl = '/img/logo.png';
+            }
+
+            $("#logo").attr("src", logoUrl);
+        });
+    </script>
 </header>
 
 </body>

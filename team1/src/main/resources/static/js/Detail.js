@@ -29,10 +29,10 @@ $(document).ready(function () {
         var crt = $(".star-icon").attr("class");
 
         if(crt === "star-icon empty-star"){
-            $(".star-icon").removeClass("empty-star").addClass("filled-star");
+            $(".star-icon").removeClass("empty-star").addClass("filled-heart");
             updateBookmark(true);
-        }else if (crt === "star-icon filled-star"){
-            $(".star-icon").removeClass("filled-star").addClass("empty-star");
+        }else if (crt === "star-icon filled-heart"){
+            $(".star-icon").removeClass("filled-heart").addClass("empty-star");
             updateBookmark(false);
         }
     });

@@ -18,18 +18,13 @@ section {
 .section1 {
     text-align: center;
 }
-.thumbnail-area {
-    position: relative;
-    overflow: hidden;
-}
-.share-btn {
-    position: absolute;
-    top: 0;
-    right: 0;
-}
+/*.thumbnail-area {*/
+/*    position: relative;*/
+/*    overflow: hidden;*/
+/*}*/
 .share-btn span{
     display: inline-block;
-    margin-left: 10px;
+    margin: 3px 10px 0 17px;
     border: 1px solid #bbb;
     text-align: center;
     border-radius: 10px;
@@ -65,6 +60,9 @@ section {
 .spot-info {
     font-size: 20px;
     padding-bottom: 100px;
+}
+.spot-info dl {
+    padding-bottom: 10px;
 }
 .spot-span {
     font-weight: 600;
@@ -187,8 +185,9 @@ select {
 .review-blur-btn {
     z-index: 99999999999999;
     position: absolute;
-    top: 35%;
-    left: 30%;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-40%);
 }
 
 .reveiw-write-title {
@@ -220,6 +219,9 @@ textarea {
 }
 .filled-star {
     color: gold; /* 채워진 별은 금색 */
+}
+.filled-heart {
+    color: #dc3545;
 }
 
 .empty-star {

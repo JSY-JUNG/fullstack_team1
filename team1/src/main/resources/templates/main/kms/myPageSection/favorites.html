@@ -27,7 +27,7 @@
                 </div>
                 <div class="fav__card card mb-4" th:if="${#lists.size(mySpot)} > 0" th:each="spot : ${mySpot}">
                     <div class="fav__img__container" style="width: 700px; height: 350px; overflow:hidden;" >
-                        <img class="fav__card__img" src="/img/test.png" alt="Placeholder Image" style="width: 100%; height: 100%; object-fit: cover;" th:src="${spot.MAINIMGTHUMB}"/>
+                        <img class="fav__card__img" src="#" alt="Placeholder Image" style="width: 100%; height: 100%; object-fit: cover;" th:src="${spot.MAINIMGTHUMB}"/>
                     </div>
                     <div class="card-body">
                         <div class="date" >January 1, 2023</div>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="fav__card card mb-4" th:if="${#lists.size(myPlace)} > 0" th:each="place : ${myPlace}">
                     <div class="fav__img__container" style="width: 700px; height: 350px; overflow:hidden;" >
-                        <img src="/img/test.png" alt="Placeholder Image" style="width: 100%; height: 100%; object-fit: cover;" th:src="${place.MAINIMGTHUMB}">
+                        <img src="#" alt="Placeholder Image" style="width: 100%; height: 100%; object-fit: cover;" th:src="${place.MAINIMGTHUMB}">
                     </div>
                     <div class="card-body">
                         <div class="date" >January 1, 2023</div>
