@@ -318,7 +318,7 @@ input::placeholder {
 .card {
     position: relative;
     min-width: 35%;
-    height: 250px;
+    height: 210px;
     margin: 0 10px;
     border-radius: 5px;
     overflow: hidden;
@@ -451,12 +451,11 @@ a {
     color: #000000;
 }
 .menu_bg {
-    width: 50%;
+    width: 880px;
     height: 2000px;
     position: fixed;
     top: 0px;
     right: 0px;
-    overflow: hidden;
     display: none;
 }
 

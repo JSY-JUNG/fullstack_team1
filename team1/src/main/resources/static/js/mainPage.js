@@ -93,7 +93,7 @@ var giMenuDuration = 700;
 // 전체 메뉴를 오른쪽으로 슬라이드하여서 보여준다.
 function ShowMenu() {
     $(".menu_bg").css({ display: "block" });
-    $(".menu").css({ right: "-100%" });
+    $(".menu").css({ right: "-50%" });
     $(".menu").animate({ right: "0px" }, { duration: giMenuDuration });
 }
 
@@ -109,3 +109,8 @@ function HideMenu() {
         }
     );
 }
+
+
+$('body').click(function(e){
+    if( !$('.menu_bg').has(e.target).length ) $('.menu_bg').hide();
+});
