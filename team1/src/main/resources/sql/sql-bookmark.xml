@@ -12,8 +12,22 @@
         DELETE FROM bookmark
         WHERE user_id = #{userId} AND spot_ucseq = #{ucSeq}
     </delete>
+
+    <insert id="insertBookmarkB" parameterType="map">
+        INSERT INTO bookmark (user_id, place_ucseq, create_date)
+        VALUES (#{userId}, #{ucSeq}, now())
+    </insert>
+    <delete id="deleteBookmarkB" parameterType="map">
+        DELETE FROM bookmark
+        WHERE user_id = #{userId} AND place_ucseq = #{ucSeq}
+    </delete>
+
     <select id="selectBookmark" parameterType="map" resultType="int">
         SELECT count(*) FROM bookmark
         WHERE spot_ucseq = #{ucseq} AND user_id = #{userId}
+    </select>
+    <select id="selectBookmarkB" parameterType="map" resultType="int">
+        SELECT count(*) FROM bookmark
+        WHERE place_ucseq = #{ucseq} AND user_id = #{userId}
     </select>
 </mapper>

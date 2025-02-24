@@ -16,9 +16,9 @@
         where
             UC_SEQ = #{UCSEQ}
         ORDER BY
-            create_date ASC
+            scope DESC, create_date DESC
         LIMIT
-            0, 3
+            0, 4
     </select>
 
     <select id="selectDetailReviewCardListB" resultType="bitc.fullstack503.team1.dto.mysql.MyReviewBoardDTO">
@@ -34,7 +34,7 @@
         where
             UC_SEQ2 = #{UCSEQ}
         ORDER BY
-            create_date ASC
+            scope DESC, create_date DESC
         LIMIT
             0, 3
     </select>

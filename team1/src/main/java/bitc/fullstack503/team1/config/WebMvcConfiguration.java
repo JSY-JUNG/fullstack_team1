@@ -24,6 +24,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
                 .addPathPatterns("/MyPage")
                 .addPathPatterns("/MyPage/*")
                 .addPathPatterns("/SearchDetail/bookmark")
+                .addPathPatterns("/SearchDetail/reviewWrite")
                 .excludePathPatterns("/");
     }
     @Override

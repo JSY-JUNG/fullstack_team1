@@ -89,4 +89,19 @@ public class SearchListServiceImpl implements SearchListService {
     public int selectBookmark(int ucseq, String userId) throws Exception {
         return listMapper.selectBookmark(ucseq, userId);
     }
+
+    @Override
+    public void insertBookmarkB(String userId, int ucSeq) throws Exception {
+        listMapper.insertBookmarkB(userId, ucSeq);
+    }
+
+    @Override
+    public void deleteBookmarkB(String userId, int ucSeq) throws Exception {
+        listMapper.deleteBookmarkB(userId, ucSeq);
+    }
+
+    @Override
+    public int selectBookmarkB(int ucseq, String userId) throws Exception {
+        return listMapper.selectBookmarkB(ucseq, userId);
+    }
 }

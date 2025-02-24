@@ -29,4 +29,10 @@ public interface ListMapper {
     void deleteBookmark(String userId, int ucSeq) throws Exception;
 
     int selectBookmark(int ucseq, String userId) throws Exception;
+
+    void insertBookmarkB(String userId, int ucSeq) throws Exception;
+
+    void deleteBookmarkB(String userId, int ucSeq) throws Exception;
+
+    int selectBookmarkB(int ucseq, String userId) throws Exception;
 }

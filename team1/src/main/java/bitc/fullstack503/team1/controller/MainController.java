@@ -64,14 +64,16 @@ public class MainController {
     public ModelAndView knh(@PathVariable("UCSEQ") int UCSEQ, @RequestParam("category") String category, HttpSession session) throws Exception {
         ModelAndView mv = new ModelAndView("main/knh/spotDetailTest");
         String userId = (String) session.getAttribute("userId");
-        int result = searchListService.selectBookmark(UCSEQ, userId);
+        int result = 0;
         if ("A".equals(category)){
+            result = searchListService.selectBookmark(UCSEQ, userId);
             MySpotDTO spotDetail = searchListService.selectDetailSpot(UCSEQ);
             List<MyReviewBoardDTO> reviewBoard = reviewService.selectDetailReviewCardListA(UCSEQ);
             mv.addObject("Detail", spotDetail);
             mv.addObject("reviewBoard", reviewBoard);
             mv.addObject("category", category);
         }else if("B".equals(category)){
+            result = searchListService.selectBookmarkB(UCSEQ, userId);
             MyPlaceDTO placeDetail = searchListService.selectDetailPlace(UCSEQ);
             List<MyReviewBoardDTO> reviewBoard = reviewService.selectDetailReviewCardListB(UCSEQ);
             mv.addObject("Detail", placeDetail);
@@ -84,29 +86,51 @@ public class MainController {
 
     @PostMapping("/SearchDetail/bookmark")
     @ResponseBody
-    public void updateBookmark(@RequestParam("bookmark") boolean bookmark, @RequestParam("ucSeq") int ucSeq, HttpSession session) throws Exception {
+    public boolean updateBookmark(@RequestParam("bookmark") boolean bookmark, @RequestParam("ucSeq") int ucSeq, HttpSession session, @RequestParam("category") String category) throws Exception {
         String userId = (String) session.getAttribute("userId");
-        if(bookmark){
-            // 즐겨찾기 추가 처리
-            searchListService.insertBookmark(userId, ucSeq);
-            System.out.println("즐겨찾기 추가");
-        }else{
-            // 즐겨찾기 제거 처리
-            searchListService.deleteBookmark(userId, ucSeq);
-            System.out.println("즐겨찾기가 제거");
+
+        if("A".equals(category)){
+            if(bookmark){
+                // 관광명소 즐겨찾기 추가 처리
+                searchListService.insertBookmark(userId, ucSeq);
+                System.out.println("관광명소 즐겨찾기 추가");
+                return true;
+            }else{
+                // 관광명소 즐겨찾기 제거 처리
+                searchListService.deleteBookmark(userId, ucSeq);
+                System.out.println("관광명소 즐겨찾기가 제거");
+                return false;
+            }
+        }else if("B".equals(category)){
+            if(bookmark){
+                // 맛집 즐겨찾기 추가 처리
+                searchListService.insertBookmarkB(userId, ucSeq);
+                System.out.println("맛집 즐겨찾기 추가");
+                return true;
+            }else{
+                // 맛집 즐겨찾기 제거 처리
+                searchListService.deleteBookmarkB(userId, ucSeq);
+                System.out.println("맛집 즐겨찾기가 제거");
+                return false;
+            }
         }
+        return false;
     }
 
 
     @PostMapping("/SearchDetail/reviewWrite")
-    public void insertReview(MyReviewBoardDTO review, MultipartHttpServletRequest multipart, HttpServletResponse res, String category) throws Exception{
-
+    public void insertReview(MyReviewBoardDTO review, MultipartHttpServletRequest multipart, HttpServletResponse res, String category, HttpServletRequest req) throws Exception{
+        String referer = req.getHeader("referer");
+        if (referer != null && !referer.contains("SearchDetail/reviewWrite")) {
+            req.getSession().setAttribute("prePage", referer);
+        }
+        String prePage = (String) req.getSession().getAttribute("prePage");
         if("A".equals(category)){
             reviewService.insertReviewA(review, multipart);
-            ScriptUtil.alertAndPage(res,"리뷰 작성 성공","/");
+            ScriptUtil.alertAndPage(res,"리뷰 작성 성공",prePage);
         }else if("B".equals(category)){
             reviewService.insertReviewB(review, multipart);
-            ScriptUtil.alertAndPage(res,"리뷰 작성 성공","/");
+            ScriptUtil.alertAndPage(res,"리뷰 작성 성공",prePage);
         }
     }
 }

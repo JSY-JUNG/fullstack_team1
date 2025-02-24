@@ -41,39 +41,6 @@
         </div>
         <p class="spot-contents" th:text="${Detail.ITEMCNTNTS}">상세내용</p>
     </div>
-    <script>
-        $(document).ready(function () {
-            $("#btn-fv").on("click", function () {
-                var crt = $(".star-icon").attr("class");
-
-                if(crt === "star-icon empty-star"){
-                    $(".star-icon").removeClass("empty-star").addClass("filled-star");
-                    updateBookmark(true);
-                }else if (crt === "star-icon filled-star"){
-                    $(".star-icon").removeClass("filled-star").addClass("empty-star");
-                    updateBookmark(false);
-                }
-            });
-        });
-        function updateBookmark(flag){
-            var userId = $("#userId").val();
-            var ucSeq = $("#ucSeq").val();
-            $.ajax({
-                url: "/SearchDetail/bookmark",
-                method: "POST",
-                data: {
-                    userId: userId,
-                    bookmark: flag,
-                    ucSeq: ucSeq
-                },
-                success: function (data) {
-                },
-                error: function (data) {
-                    alert("즐겨찾기 중 오류 발생");
-                }
-            });
-        }
-    </script>
 </section>
 
 </body>
