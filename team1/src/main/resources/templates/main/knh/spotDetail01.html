@@ -30,7 +30,8 @@
             <h1 th:text="${Detail.MAINTITLE}">이름</h1>
             <!-- 명소 썸네일 상세 이미지 -->
            <div class="thumbnail-main-img">
-               <img class="thumbnail-main-img" src="#" alt="#" th:src="@{|${Detail.MAINIMGNORMAL}|}">
+               <img class="thumbnail-main-img" src="#" alt="#" th:src="@{|${Detail.MAINIMGNORMAL}|}" th:if="${Detail.MAINIMGNORMAL != null}">
+               <img class="thumbnail-main-img border" src="#" alt="#" th:src="@{/img/noimage.jpg}" th:unless="${Detail.MAINIMGNORMAL != null}">
            </div>
         <div class="mt-2 mb-2">
             <span th:each="i : ${#numbers.sequence(1, 5)}">

@@ -21,7 +21,8 @@
     <div class="hotSpot__container">
         <div class="hotSpot__image">
             <a href="#">
-                <img class="hotSpot__image_img" src="/img/hotSpot01.png" alt="명소사진" th:src="${spotRank.MAINIMGTHUMB}" />
+                <img class="hotSpot__image_img" src="#" alt="명소사진" th:src="${spotRank.MAINIMGTHUMB}" th:if="${spotRank.MAINIMGTHUMB} != null" />
+                <img class="hotSpot__image_img border" src="#" alt="#" th:src="@{/img/noimage.jpg}" th:unless="${spotRank.MAINIMGTHUMB} != null" />
             </a>
         </div>
         <div class="hotSpot__des">

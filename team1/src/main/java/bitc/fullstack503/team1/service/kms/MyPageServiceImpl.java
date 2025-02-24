@@ -34,7 +34,12 @@ public class MyPageServiceImpl implements MyPageService {
 
     @Override
     public MyReviewBoardDTO selectReviewDetail(String userId, int reviewIdx) throws Exception {
-        return myPageMapper.selectReviewDetail(userId, reviewIdx);
+        MyUserDTO user = myPageMapper.selectUserGrade(userId);
+        if(user != null && "A".equals(user.getGrade())){
+            return myPageMapper.selectReviewDetailGradeA(reviewIdx);
+        }else{
+            return myPageMapper.selectReviewDetail(userId, reviewIdx);
+        }
     }
 
     @Override

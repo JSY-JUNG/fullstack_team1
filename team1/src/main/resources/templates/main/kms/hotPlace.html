@@ -19,13 +19,11 @@
         <div class="slider-wrapper">
             <div class="slider">
                 <div class="card"  th:if="${#lists.size(placeRankList)} > 0" th:each="item : ${placeRankList}">
-                    <a href="#"
-                    ><img class="card__img" src="/img/hotPlace01.png" alt="Top1" th:src="${item.MAINIMGTHUMB}"/><span
-                            class="hotPlace__rank"
-
-                    >Top</span
-                    ></a
-                    >
+                    <a href="#">
+                        <img class="card__img" src="/img/hotPlace01.png" alt="Top1" th:src="${item.MAINIMGTHUMB}" th:if="${item.MAINIMGTHUMB} != null"/>
+                        <img class="card__img" src="/img/hotPlace01.png" alt="Top1" th:src="@{/img/noimage.jpg}" th:unless="${item.MAINIMGTHUMB} != null"/>
+                        <span class="hotPlace__rank">Top</span>
+                    </a>
                 </div>
             </div>
         </div>

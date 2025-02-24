@@ -29,7 +29,8 @@
                     <ul class="reveiw-count-main p-3">
 <!--                        예시이미지-->
                         <li class="float-start p-0">
-                            <img src="#" th:src="@{'/images/' + ${reviewBoard.imageUrl}}" th:style="${#strings.isEmpty(reviewBoard.imageUrl) ? 'width: 150px; height: 150px; background-color: #bbbbbb;' : 'width: 150px; height: 150px;'}">
+                            <img src="#" th:if="${reviewBoard.imageUrl != null}" th:src="@{'/images/' + ${reviewBoard.imageUrl}}" style="width: 150px; height: 150px;">
+                            <img class="border" src="#" th:unless="${reviewBoard.imageUrl != null}" th:src="@{/img/noimage.jpg}" style="width: 150px; height: 150px;">
                         </li>
 <!--                        <li class="float-start" style="width: 150px; height: 150px; background-color: #bbbbbb"></li>-->
                         <li class="float-end" th:text="${reviewBoard.contents}">리뷰내용 입니다. 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 리뷰내용 입니다 </li>

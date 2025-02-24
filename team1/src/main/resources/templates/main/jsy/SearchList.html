@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>관광명소</title>
+    <title>검색리스트</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -90,7 +90,7 @@
                                 <div class="overflow-hidden h-100">
                                     <a href="#" th:href="@{|/SearchDetail/${item.UCSEQ}?category=${category}|}">
                                         <img sizes="100vw" src="#" class="position-absolute h-100 w-100" style="inset: 0px; color: transparent; object-fit: cover; max-height: 240px; border-radius: 12px;" alt="#" th:src="@{|${item.MAINIMGTHUMB}|}" th:if="${item.MAINIMGTHUMB} != null">
-                                        <div th:unless="${item.MAINIMGTHUMB} != null" class="position-absolute h-100 w-100" style="inset: 0px; background: lightgray; object-fit: cover; border-radius: 12px;"></div>
+                                        <img sizes="100vw" src="#" th:unless="${item.MAINIMGTHUMB} != null" class="position-absolute h-100 w-100 border" style="inset: 0px; color: transparent; object-fit: cover; max-height: 240px; border-radius: 12px;" th:src="@{/img/noimage.jpg}">
                                     </a>
                                 </div>
                             </div>

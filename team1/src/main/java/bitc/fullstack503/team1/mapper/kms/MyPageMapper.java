@@ -28,4 +28,8 @@ public interface MyPageMapper {
     List<MyPlaceDTO> selectMyPlace(String userId) throws Exception;
 
     List<MyReviewBoardDTO> selectReviewByManager() throws Exception;
+
+    MyUserDTO selectUserGrade(String userId) throws Exception;
+
+    MyReviewBoardDTO selectReviewDetailGradeA(int reviewIdx) throws Exception;
 }
