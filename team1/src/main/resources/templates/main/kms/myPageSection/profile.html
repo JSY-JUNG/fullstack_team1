@@ -15,8 +15,8 @@
 
 </section>
 <!-- profile -->
-<section class="mb-4 container" th:fragment="profile" style="margin-bottom: 35px;">
-    <div class="section-inner">
+<section class="container" th:fragment="profile">
+    <div class="section-inner mb-5" >
         <h2 th:if="${profile.grade == 'A'}">관리자 프로필</h2>
         <h2 th:unless="${profile.grade == 'A'}">프로필</h2>
         <hr class="mb-5">

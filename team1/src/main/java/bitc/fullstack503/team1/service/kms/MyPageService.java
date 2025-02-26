@@ -21,13 +21,13 @@ public interface MyPageService {
 
     void deleteReview(int reviewIdx);
 
-    List<MySpotDTO> selectMySpot(String userId) throws Exception;
+    Page<MySpotDTO> selectMySpot(int pageNum, String userId) throws Exception;
 
-    List<MyPlaceDTO> selectMyPlace(String userId) throws Exception;
-
-    Page<MyReviewBoardDTO> selectReviewByManager(int pageNum) throws Exception;
+    Page<MyPlaceDTO> selectMyPlace(int pageNum, String userId) throws Exception;
 
     Page<MyUserDTO> selectUserByManager(int pageNum) throws Exception;
+
+    Page<MyReviewBoardDTO> selectReviewByManager(int pageNum) throws Exception;
 
     MyUserDTO selectUserDetail(String userId) throws Exception;
 

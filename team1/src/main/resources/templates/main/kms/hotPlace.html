@@ -19,7 +19,7 @@
         <div class="slider-wrapper">
             <div class="slider">
                 <div class="card" th:if="${#lists.size(placeRankList)} > 0" th:each="item,stat : ${placeRankList}">
-                    <a href="#">
+                    <a href="#" th:href="@{|/SearchDetail/${item.UCSEQ}?category=B|}">
                         <img class="card__img" src="#" alt="Top1" th:src="${item.MAINIMGTHUMB}" th:if="${item.MAINIMGTHUMB} != null" />
                         <img class="card__img" src="#" alt="Top1" th:src="@{/img/noimage.jpg}" th:unless="${item.MAINIMGTHUMB} != null"/>
                         <span class="hotPlace__rank" th:text="|TOP ${stat.index +1}|">Top</span>

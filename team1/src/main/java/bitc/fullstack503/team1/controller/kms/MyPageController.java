@@ -32,7 +32,7 @@ public class MyPageController {
         // 해당 유저의 정보를 가져오기
         MyUserDTO profile = myPageService.selectMyProfile(userId);
 
-        // 관리자의 모든 유저의 리뷰 가져오기
+        // 관리자의 모든 유저정보 가져오기
 //        List<MyUserDTO> usersAll = myPageService.selectUserByManager();
         PageInfo<MyUserDTO> usersAll = new PageInfo<>(myPageService.selectUserByManager(pageNum), 5);
 
@@ -44,9 +44,10 @@ public class MyPageController {
         PageInfo<MyReviewBoardDTO> reviews = new PageInfo<>(myPageService.selectReviewByUserName(pageNum, userId), 5);
 
         // 해당 유저가 즐찾한 명소
-        List<MySpotDTO> mySpot = myPageService. selectMySpot(userId);
+        PageInfo<MySpotDTO> mySpot = new PageInfo<>(myPageService. selectMySpot(pageNum, userId), 5);
+
         // 해당 유저가 즐찾한 맛집
-        List<MyPlaceDTO> myPlace = myPageService. selectMyPlace(userId);
+        PageInfo<MyPlaceDTO> myPlace = new PageInfo<>(myPageService. selectMyPlace(pageNum, userId), 5);
 
         // 뷰에 데이터 전달
         mav.addObject("userId", userId);

@@ -23,9 +23,9 @@ public interface MyPageMapper {
 
     void deleteReview(int reviewIdx);
 
-    List<MySpotDTO> selectMySpot(String userId) throws Exception;
+    Page<MySpotDTO> selectMySpot(String userId) throws Exception;
 
-    List<MyPlaceDTO> selectMyPlace(String userId) throws Exception;
+    Page<MyPlaceDTO> selectMyPlace(String userId) throws Exception;
 
     Page<MyReviewBoardDTO> selectReviewByManager() throws Exception;
 

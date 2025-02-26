@@ -139,7 +139,7 @@
 
     <!--  관리자가 모든 유저정보 목록 가져오기  -->
     <select id="selectUserByManager" resultType="bitc.fullstack503.team1.dto.mysql.MyUserDTO">
-        SELECT user_id, user_pw, user_name, user_email, user_phone,
+        SELECT user_id, user_pw, user_name, user_email, user_phone, deleted_yn,
             DATE_FORMAT(create_date, '%Y-%m-%d') as create_date,
             DATE_FORMAT(update_date, '%Y-%m-%d') as update_date
         FROM user

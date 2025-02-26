@@ -109,3 +109,7 @@
     -webkit-box-orient: vertical;
     /*margin-bottom: 2rem;*/
 }
+
+.review__detail__btn:hover {
+    filter: brightness(115%);
+}

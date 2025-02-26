@@ -53,12 +53,18 @@ public class MyPageServiceImpl implements MyPageService {
     }
 
     @Override
-    public List<MySpotDTO> selectMySpot(String userId) throws Exception  {
+    public Page<MySpotDTO> selectMySpot(int pageNum, String userId) throws Exception  {
+
+        PageHelper.startPage(pageNum, 2);
+
         return myPageMapper.selectMySpot(userId);
     }
 
     @Override
-    public List<MyPlaceDTO> selectMyPlace(String userId) throws Exception  {
+    public Page<MyPlaceDTO> selectMyPlace(int pageNum, String userId) throws Exception  {
+
+        PageHelper.startPage(pageNum, 2);
+
         return myPageMapper.selectMyPlace(userId);
     }
 
